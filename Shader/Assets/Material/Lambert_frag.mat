@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lambert
-  m_Shader: {fileID: 4800000, guid: a21db2397b38f9244ab49cda6b03745b, type: 3}
+  m_Name: Lambert_frag
+  m_Shader: {fileID: 4800000, guid: 531e45ffd62892d4eb088556f9bc889f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

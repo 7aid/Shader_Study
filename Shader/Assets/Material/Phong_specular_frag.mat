@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lambert6
+  m_Name: Phong_specular_frag
   m_Shader: {fileID: 4800000, guid: 2c612be32b3e24342a53f6d53ca912fe, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
