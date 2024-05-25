@@ -1,0 +1,443 @@
+Using pre-set license
+Built from '2022.3/release' branch; Version is '2022.3.20f1 (61c2feb0970d) revision 6406910'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'zh' Physical Memory: 16279 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\Unity 2022.3.20f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+E:/UnityProject/Shader_2022.3.20f1/Shader
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+49943
+Successfully changed project path to: E:/UnityProject/Shader_2022.3.20f1/Shader
+E:/UnityProject/Shader_2022.3.20f1/Shader
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [33196] Host "[IP] 192.168.24.4 [Port] 0 [Flags] 2 [Guid] 3414449073 [EditorId] 3414449073 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-O9NFJDV) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [33196] Host "[IP] 192.168.24.4 [Port] 0 [Flags] 2 [Guid] 3414449073 [EditorId] 3414449073 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-O9NFJDV) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 3 workers.
+Refreshing native plugins compatible for Editor in 0.79 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.20f1 (61c2feb0970d)
+[Subsystems] Discovering subsystems at path D:/Unity 2022.3.20f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/UnityProject/Shader_2022.3.20f1/Shader/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1050 Ti (ID=0x1c82)
+    Vendor:   NVIDIA
+    VRAM:     4017 MB
+    Driver:   31.0.15.3623
+Initialize mono
+Mono path[0] = 'D:/Unity 2022.3.20f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Unity 2022.3.20f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/Unity 2022.3.20f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56844
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Unity 2022.3.20f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: D:/Unity 2022.3.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.006087 seconds.
+- Loaded All Assemblies, in  0.593 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.570 seconds
+Domain Reload Profiling: 1163ms
+	BeginReloadAssembly (182ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (58ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (82ms)
+	LoadAllAssembliesAndSetupDomain (254ms)
+		LoadAssemblies (181ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (251ms)
+			TypeCache.Refresh (249ms)
+				TypeCache.ScanAssembly (224ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (570ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (469ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (128ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (224ms)
+			ProcessInitializeOnLoadMethodAttributes (107ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.622 seconds
+Refreshing native plugins compatible for Editor in 0.37 ms, found 0 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.598 seconds
+Domain Reload Profiling: 1221ms
+	BeginReloadAssembly (236ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (10ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (32ms)
+	RebuildCommonClasses (55ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (71ms)
+	LoadAllAssembliesAndSetupDomain (244ms)
+		LoadAssemblies (348ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (41ms)
+			TypeCache.Refresh (34ms)
+				TypeCache.ScanAssembly (20ms)
+			ScanForSourceGeneratedMonoScriptInfo (4ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (599ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (369ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (36ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (53ms)
+			ProcessInitializeOnLoadAttributes (238ms)
+			ProcessInitializeOnLoadMethodAttributes (34ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (26ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Refreshing native plugins compatible for Editor in 0.27 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 335 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 9 unused Assets / (49.7 KB). Loaded Objects now: 813.
+Memory consumption went from 66.2 MB to 66.1 MB.
+Total: 2.649500 ms (FindLiveObjects: 0.069100 ms CreateObjectMapping: 0.015500 ms MarkObjects: 2.469900 ms  DeleteObjects: 0.094000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:CustomObjectIndexerAttribute: 6d391050e5a25f67b0a2c618074f2cd9 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 357236.331695 seconds.
+  path: Assets/Shader/Lambert_frag_half.shader
+  artifactKey: Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_frag_half.shader using Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f241c1d82c59f6b13e6d10d27350b5ea') in 0.021343 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 11.064732 seconds.
+  path: Assets/Shader/Lambert_vert_half.shader
+  artifactKey: Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_vert_half.shader using Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66cfddd3df9d5efcc57c8a34d75fbbf4') in 0.004896 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 220.043566 seconds.
+  path: Assets/Shader/Lambert_vert_half.shader
+  artifactKey: Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_vert_half.shader using Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42c809d7aad0783502300bcffdcafbb2') in 0.130093 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1890.864603 seconds.
+  path: Assets/Shader/Lambert_vert_half.shader
+  artifactKey: Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_vert_half.shader using Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4daf491de5f1ef3a50e0568459bc1092') in 0.038305 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 160.728362 seconds.
+  path: Assets/Shader/Lambert_vert_half.shader
+  artifactKey: Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_vert_half.shader using Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe80eb743879508564994f60638152bf') in 0.003208 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 11.060299 seconds.
+  path: Assets/Shader/Lambert_vert_half.shader
+  artifactKey: Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_vert_half.shader using Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e810f0a47f0343bdb742b8f16567ca58') in 0.014379 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 264.786713 seconds.
+  path: Assets/Shader/Lambert_vert_half.shader
+  artifactKey: Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_vert_half.shader using Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e964a9ab912bbe9a206dbe5b991d27a3') in 0.002718 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 55980.434573 seconds.
+  path: Assets/Shader/Lambert_vert_half.shader
+  artifactKey: Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_vert_half.shader using Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '759f1b7073e659312d1c218849c6b9e0') in 0.083536 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 658.392136 seconds.
+  path: Assets/Shader/Lambert_frag_half.shader
+  artifactKey: Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_frag_half.shader using Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5bab84cf33785f310ec51b8bafad1d6a') in 0.020664 seconds
+Number of updated asset objects reloaded before import = 1
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 331.549208 seconds.
+  path: Assets/Shader/Lambert_frag_half.shader
+  artifactKey: Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_frag_half.shader using Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba5a25376d2027f83ab56fd3dd9b8eef') in 0.008359 seconds
+Number of updated asset objects reloaded before import = 1
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 32.725275 seconds.
+  path: Assets/Shader/Lambert_frag_half.shader
+  artifactKey: Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_frag_half.shader using Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ece1d9b5f2e5031f029cad01533920b9') in 0.002091 seconds
+Number of updated asset objects reloaded before import = 1
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 71.442182 seconds.
+  path: Assets/Shader/Lambert_frag_half.shader
+  artifactKey: Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_frag_half.shader using Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a859f447636a8d39c58d3f69195eb6f0') in 0.006327 seconds
+Number of updated asset objects reloaded before import = 1
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 12.755688 seconds.
+  path: Assets/Shader/Lambert_frag_half.shader
+  artifactKey: Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_frag_half.shader using Guid(14007db372663d94e8652409f5d4c2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c881d7140db823252904b4dfff24d30f') in 0.004713 seconds
+Number of updated asset objects reloaded before import = 1
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 13905.720860 seconds.
+  path: Assets/Shader/Phone.shader
+  artifactKey: Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone.shader using Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1bbf42637fe2285ce67a85ee9fbedd6f') in 0.069954 seconds
+Number of updated asset objects reloaded before import = 1
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 37.292577 seconds.
+  path: Assets/Shader/Phone_vert.shader
+  artifactKey: Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_vert.shader using Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ebe02e91165c19b067f88c31044acc9') in 0.028428 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1233.153171 seconds.
+  path: Assets/Shader/Phone_vert.shader
+  artifactKey: Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_vert.shader using Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfe90893fbff72b7e1722619a7b2090a') in 0.006450 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 954.908404 seconds.
+  path: Assets/Shader/Phone_vert.shader
+  artifactKey: Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_vert.shader using Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb3064405dbbb9c9bdbac03ef7dce0dd') in 0.017704 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 3.780931 seconds.
+  path: Assets/Shader/Lambert_vert_half.shader
+  artifactKey: Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Lambert_vert_half.shader using Guid(c4afaf28ced74e84cb7c752e8d0a6384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79b844ca001b845c01d999772b784da6') in 0.013297 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 15.517096 seconds.
+  path: Assets/Shader/Phone__vert.shader
+  artifactKey: Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone__vert.shader using Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45fdf36db9d632c295a7b4c9ad978077') in 0.004589 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 37.058894 seconds.
+  path: Assets/Shader/Phone_specular_vert.shader
+  artifactKey: Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_vert.shader using Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0b9623c1e4c2093d1ed7ffd0672202e') in 0.003007 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1482.699550 seconds.
+  path: Assets/Shader/Phone_specular_vert.shader
+  artifactKey: Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_vert.shader using Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df4a8a35926e078b9b68b192190219e0') in 0.084544 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 70.592035 seconds.
+  path: Assets/Shader/Phone_specular_vert.shader
+  artifactKey: Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_vert.shader using Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f4dc33f3932cf98d7d28f9388233561b') in 0.010064 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 910.017506 seconds.
+  path: Assets/Shader/Phone_specular_vert.shader
+  artifactKey: Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_vert.shader using Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1679de7863a28b8758a4641d50e21f02') in 0.044194 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 2.021356 seconds.
+  path: Assets/Shader/Phone_specular_vert 1.shader
+  artifactKey: Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_vert 1.shader using Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cabbcb0be1422b382d9366061b348e9') in 0.060885 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 37.056342 seconds.
+  path: Assets/Shader/Phone_specular_vert.shader
+  artifactKey: Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_vert.shader using Guid(813f08446addad3458394a9d077411ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ff4425a4d52972d19f5087d582be6f1') in 0.071642 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 4009.067249 seconds.
+  path: Assets/Shader/Phone_specular_frag.shader
+  artifactKey: Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_frag.shader using Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2dc1f15bf5195b87d28e99addbfe8c2') in 0.087112 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 212.940868 seconds.
+  path: Assets/Shader/Phone_specular_frag.shader
+  artifactKey: Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_frag.shader using Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8c9384631d1076e117534e11976ea7a') in 0.011445 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 26.456793 seconds.
+  path: Assets/Shader/Phone_specular_frag.shader
+  artifactKey: Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_frag.shader using Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b3fc76a9a4a993c003a6e050d214d4c') in 0.012173 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 17.333661 seconds.
+  path: Assets/Shader/Phone_specular_frag.shader
+  artifactKey: Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_frag.shader using Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa9a925e5d0cdc82bb32392aff5d861b') in 0.020233 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 93.275767 seconds.
+  path: Assets/Shader/Phone_specular_frag.shader
+  artifactKey: Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_frag.shader using Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2995059e4ea2cf6554a3b39721500032') in 0.007278 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 481.326834 seconds.
+  path: Assets/Shader/Phone_specular_frag.shader
+  artifactKey: Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_frag.shader using Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6dd5373ec8ea84fe8b87038dfe9aac4b') in 0.007248 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 36.639318 seconds.
+  path: Assets/Shader/Phone_specular_frag.shader
+  artifactKey: Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_specular_frag.shader using Guid(2c612be32b3e24342a53f6d53ca912fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3252057e915c5ca882dd58143c23541a') in 0.003692 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 186.355488 seconds.
+  path: Assets/Shader/Phone_vert.shader
+  artifactKey: Guid(ba2a729ead4a1034b8108e141d815c91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Phone_vert.shader using Guid(ba2a729ead4a1034b8108e141d815c91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d0cabfb58fe70b63e1103a4be2f2c16') in 0.015970 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
