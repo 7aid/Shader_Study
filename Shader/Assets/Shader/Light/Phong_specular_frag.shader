@@ -1,7 +1,7 @@
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 //Phone高光反射逐片元光照
-Shader "MyShader/Phone_specular_frag"
+Shader "MyShader/Phong_specular_frag"
 {
     Properties
     {

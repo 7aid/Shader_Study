@@ -1,9 +1,9 @@
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
-//Phone式逐顶点光照
-Shader "MyShader/Phone_vert"
+//Blinn_Phone式逐顶点光照
+Shader "MyShader/Blinn_Phong_vert"
 {
-    Properties
+     Properties
     {
         //材质漫反射颜色
         _MainColor("_MainColor", Color) = (1,1,1,1)
@@ -29,40 +29,38 @@ Shader "MyShader/Phone_vert"
             fixed _SpecularGloss;
             struct v2f
             {
+                //光照颜色
                fixed3 color:COLOR;
-               fixed4 pos:POSITION;
+               //裁剪空间顶点
+               fixed4 pos:SV_POSITION;
             };
             //获取兰伯特漫反射颜色
-            fixed3 getLambertColor(appdata_base dataBase)
+            fixed3 getLambertColor(fixed3 wnormal)
             {
-                fixed3 color;
-                fixed3 wNormal = UnityObjectToWorldNormal(dataBase.normal)
+                fixed3 color;     
                 fixed3 dirLight = normalize(_WorldSpaceLightPos0.xyz);
-                color = _LightColor0 * _MainColor.rgb * max(0, dot(wNormal, dirLight));
+                color = _LightColor0.rgb * _MainColor.rgb * max(0, dot(wnormal, dirLight));
                 return color;
             }
             //获取Phone高光反射颜色
-            fixed3 getPhoneSpecularColor(appdata_base dataBase)
+            fixed3 getBlinnPhoneSpecularColor(fixed3 wnormal, fixed3 wpos)
             {           
-               fixed3 color;
-               fixed3 worldNormal = UnityObjectToWorldNormal(dataBase.normal);
-               fixed3 worldPos = mul(unity_ObjectToWorld, dataBase.vertex).xyz;
-               //标准后观察方向向量
-               fixed3 dirCamera = normalize(_WorldSpaceCameraPos.xyz - worldPos);
-               //世界空间下光的单位向量
-               fixed3 dirLight = normalize(_WorldSpaceLightPos0.xyz);
-               //标准后的反射方向
-               fixed3 dirEflect = normalize(reflect(-dirLight ,worldNormal));
-               //高光反射光照颜色 = 光源的颜色 * 材质高光反射颜色 * max (0，标准化后观察方向向量 · 标准化后的反射方向) 幂
-               color = _LightColor0 * _SpecularColor.rgb * ( pow( max( 0, dot( dirEflect, dirCamera)), _SpecularGloss));
+               fixed3 color; 
+               //对角向量
+               fixed3 dirHalf = normalize(_WorldSpaceLightPos0) + normalize(_WorldSpaceCameraPos - wpos);
+               //标准化对角向量
+               fixed3 dirHalfNormalize = normalize(dirHalf);
+               color = _LightColor0.rgb * _SpecularColor.rgb * ( pow( max( 0, dot( dirHalfNormalize, wnormal)), _SpecularGloss));
                return color;
             }
 
             v2f vert (appdata_base dataBase)
             {
-               v2f data;  
+               v2f data;
+               fixed3 wnormal = UnityObjectToWorldNormal(dataBase.normal);
+               fixed3 wpos = mul(unity_ObjectToWorld, dataBase.vertex);
                data.pos = UnityObjectToClipPos(dataBase.vertex);
-               data.color = UNITY_LIGHTMODEL_AMBIENT + getLambertColor(dataBase) + getPhoneSpecularColor(dataBase);
+               data.color = UNITY_LIGHTMODEL_AMBIENT + getLambertColor(wnormal) + getBlinnPhoneSpecularColor(wnormal, wpos);
                return data;
             }
 

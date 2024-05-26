@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Phong_vert
-  m_Shader: {fileID: 4800000, guid: 6a296c60e49642240a600820e21cbe63, type: 3}
+  m_Name: Phong_specular_vert
+  m_Shader: {fileID: 4800000, guid: 813f08446addad3458394a9d077411ca, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
