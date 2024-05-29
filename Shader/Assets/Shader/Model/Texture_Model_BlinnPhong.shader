@@ -1,3 +1,4 @@
+//纹理贴图布林方光照
 Shader "MyShader/Texture_Model_BlinnPhong"
 {
     Properties
