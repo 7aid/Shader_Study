@@ -31,27 +31,27 @@ Shader "MyShader/Texture_Diffuse"
             struct v2f
             {
                 //裁剪空间坐标
-                fixed4 pos:SV_POSITION;
+                float4 pos:SV_POSITION;
                 //float2 uvTex:TEXCOORD0;
                 //float2 uvBump:TEXCOORD1;
                 //我们可以单独的声明两个float2的成员用于记录 颜色和法线纹理的uv坐标
                 //也可以直接声明一个float4的成员 xy用于记录颜色纹理的uv，zw用于记录法线纹理的uv
-                fixed4 uv:TEXCOORD0;
+                float4 uv:TEXCOORD0;
                 //切线空间下光的方向
-                fixed3 lightDir:TEXCOORD1;
+                float3 lightDir:TEXCOORD1;
                 //切线空间下视角方向
-                fixed3 viewDir:TEXCOORD2;
+                float3 viewDir:TEXCOORD2;
             };
             //材质漫反射颜色
-            fixed4 _MainColor;
+            float4 _MainColor;
             //纹理
             sampler2D _MainTex;
             //纹理的缩放和偏移
-            fixed4 _MainTex_ST;
+            float4 _MainTex_ST;
             //法线纹理
             sampler2D _BumpTex;
             //法线纹理的缩放和偏移
-            fixed4 _BumpTex_ST;
+            float4 _BumpTex_ST;
             //凹凸程度
             float _BumpNum;
             //高光反射颜色
@@ -68,7 +68,7 @@ Shader "MyShader/Texture_Diffuse"
                 //法线贴图uv坐标
                 data.uv.zw = full.texcoord.xy * _BumpTex_ST.xy + _BumpTex_ST.zw;
                 //副切线
-                fixed3 tangentMinor = cross(normalize(full.normal), normalize(full.tangent)) * full.tangent.w;
+                fixed3 tangentMinor = cross( normalize(full.tangent), normalize(full.normal)) * full.tangent.w;
                 //矩阵
                 float3x3 mulM2T = float3x3(full.tangent.xyz, tangentMinor, full.normal );
                 //切线空间光照方向
@@ -84,11 +84,11 @@ Shader "MyShader/Texture_Diffuse"
             {
                 fixed3 color;
                 //取出法线贴图的法线信息
-                fixed4 packNormal = tex2D(_BumpTex, data.uv.zw);
+                float4 packNormal = tex2D(_BumpTex, data.uv.zw);
                 //由于法线XYZ分量范围在[-1，1]之间而像素RGB分量范围在[0，1]之间
                 //normalTex = normalTex * 2 - 1;
                 //也可以使用UnpackNormal方法对法线信息进行逆运算以及可能的解压 
-                fixed3 tangentNormal = UnpackNormal(packNormal);
+                float3 tangentNormal = UnpackNormal(packNormal);
                 //乘以BumpScale用于控制凹凸程度
                 tangentNormal *= _BumpNum;
                 //主贴图颜色和漫反射颜色叠加叠加

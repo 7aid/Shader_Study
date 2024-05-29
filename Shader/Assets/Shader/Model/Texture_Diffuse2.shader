@@ -20,7 +20,6 @@ Shader "MyShader/Texture_Diffuse2"
         Pass
         {   //设置光渲染方式，不透明物体使用向前渲染
             Tags { "LightMode"="ForwardBase" }
-
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -77,7 +76,7 @@ Shader "MyShader/Texture_Diffuse2"
                 //世界空间切线
                 fixed3 wTangent = UnityObjectToWorldDir(full.tangent.xyz);
                 //世界空间副切线
-                fixed3 wbiTangent = cross(normalize(wNormal), normalize(wTangent)) * full.tangent.w;
+                fixed3 wbiTangent = cross(normalize(wTangent), normalize(wNormal)) * full.tangent.w;
                 //矩阵  世界空间到切线空间的
                 //float3x3 mulW2T = float3x3(full.tangent.xyz, biTangent, full.normal);
                 fixed3 wPos = mul(unity_ObjectToWorld, full.vertex).xyz;
@@ -100,11 +99,11 @@ Shader "MyShader/Texture_Diffuse2"
             {
                 fixed3 color;
                 //取出法线贴图的法线信息
-                fixed4 packNormal = tex2D(_BumpTex, data.uv.zw);
+                float4 packNormal = tex2D(_BumpTex, data.uv.zw);
                 //由于法线XYZ分量范围在[-1，1]之间而像素RGB分量范围在[0，1]之间
                 //normalTex = normalTex * 2 - 1;
                 //也可以使用UnpackNormal方法对法线信息进行逆运算以及可能的解压 
-                fixed3 tangentNormal = UnpackNormal(packNormal);
+                float3 tangentNormal = UnpackNormal(packNormal);
                 //乘以BumpScale用于控制凹凸程度
                 tangentNormal.xy *= _BumpNum;
                 tangentNormal.z = sqrt(1.0 - saturate(dot(tangentNormal.xy, tangentNormal.xy)));
@@ -123,7 +122,7 @@ Shader "MyShader/Texture_Diffuse2"
                 //获取兰伯特漫反射光照颜色
                 fixed3 lambertColor = _LightColor0.rgb * albedo * max(0, dot(wTangentNormal, dirLight));
                 //获取对角向量的标准化
-                fixed3 halfDir = normalize(dirLight + dirView);
+                float3 halfDir = normalize(dirLight + dirView);
                 //获取布林方高光反射颜色
                 fixed3 specularColorBack = _LightColor0.rgb * _SpecularColor.rgb * pow(max(0, dot(wTangentNormal, halfDir)), _SpecularNum);
                 //获取布林方光照模型
