@@ -10,10 +10,12 @@ Shader "MyShader/Texture_DiffuseAndGradual"
         _BumpTex("BumpTex", 2D) = ""{}
         //凹凸程度
         _BumpNum("BumpNum", Range(0,2)) = 1
+        //渐变纹理贴图
+        _GradualTex("GradualTex", 2D) = ""{}
         //高光反射颜色
         _SpecularColor("SpecularColor", Color) = (1,1,1,1)
         //光泽度
-        _SpecularNum("SpecularNum", Range(0,20)) = 5
+        _SpecularNum("SpecularNum", Range(8, 255)) = 20
     }
     SubShader
     {
@@ -58,6 +60,9 @@ Shader "MyShader/Texture_DiffuseAndGradual"
             fixed4 _SpecularColor;
             //高反光泽度
             float _SpecularNum;
+            //渐变纹理
+            sampler2D _GradualTex;
+            float4 _GradualTex_ST;
 
             v2f vert (appdata_full full)
             {
@@ -68,9 +73,13 @@ Shader "MyShader/Texture_DiffuseAndGradual"
                 //法线贴图uv坐标
                 data.uv.zw = full.texcoord.xy * _BumpTex_ST.xy + _BumpTex_ST.zw;
                 //副切线
-                fixed3 tangentMinor = cross( normalize(full.tangent), normalize(full.normal)) * full.tangent.w;
+                fixed3 biTangent = cross(normalize(full.tangent), normalize(full.normal)) * full.tangent.w;
                 //矩阵
-                float3x3 mulM2T = float3x3(full.tangent.xyz, tangentMinor, full.normal );
+                float3x3 mulM2T = float3x3(
+                        full.tangent.xyz,
+                        biTangent, 
+                        full.normal
+                );
                 //切线空间光照方向
                 data.lightDir = mul(mulM2T, ObjSpaceLightDir(full.vertex));
                  //切线空间视角方向
@@ -82,7 +91,6 @@ Shader "MyShader/Texture_DiffuseAndGradual"
 
             fixed4 frag (v2f data) : SV_Target
             {
-                fixed3 color;
                 //取出法线贴图的法线信息
                 float4 packNormal = tex2D(_BumpTex, data.uv.zw);
                 //由于法线XYZ分量范围在[-1，1]之间而像素RGB分量范围在[0，1]之间
@@ -90,18 +98,21 @@ Shader "MyShader/Texture_DiffuseAndGradual"
                 //也可以使用UnpackNormal方法对法线信息进行逆运算以及可能的解压 
                 float3 tangentNormal = UnpackNormal(packNormal);
                 //乘以BumpScale用于控制凹凸程度
-                tangentNormal *= _BumpNum;
+                tangentNormal.xy *= _BumpNum;
+                tangentNormal.z = sqrt(1.0 - saturate(dot(tangentNormal.xy, tangentNormal.xy)));
                 //主贴图颜色和漫反射颜色叠加叠加
                 fixed3 albedo = tex2D(_MainTex, data.uv.xy) * _MainColor.rgb;
-                //获取兰伯特漫反射光照颜色
-                fixed3 lambertColor = _LightColor0.rgb * albedo * max(0, dot(tangentNormal, normalize(data.lightDir)));
+                //获取半兰伯特漫反射余弦
+                fixed halfLambertNum = dot(normalize(tangentNormal) , normalize(data.lightDir)) * 0.5 + 0.5;
+                //获取漫反射颜色
+                fixed3 diffuseColor = _LightColor0.rgb * albedo.rgb * tex2D(_GradualTex, fixed2(halfLambertNum, halfLambertNum)).rgb;
                 //获取对角向量的标准化
-                fixed3 halfDir = normalize(normalize(data.lightDir) + normalize(data.viewDir));
+                float3 halfDir = normalize( normalize(data.viewDir) + normalize(data.lightDir));
                 //获取布林方高光反射颜色
                 fixed3 specularColorBack = _LightColor0.rgb * _SpecularColor.rgb * pow(max(0, dot(tangentNormal, halfDir)), _SpecularNum);
                 //获取布林方光照模型
-                color = UNITY_LIGHTMODEL_AMBIENT.rgb * albedo + lambertColor + specularColorBack;
-                return fixed4(color, 1);
+                fixed3 color = UNITY_LIGHTMODEL_AMBIENT.rgb * albedo + diffuseColor + specularColorBack;
+                return fixed4(color.rgb, 1);
 
             }
             ENDCG
