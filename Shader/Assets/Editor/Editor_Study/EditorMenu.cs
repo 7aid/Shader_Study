@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class EditorTest : Editor
+public class EditorMenu : Editor
 {
     [MenuItem("页签/一级选项/二级选项")]
     private static void EditorTest01()
