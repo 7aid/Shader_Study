@@ -6,12 +6,28 @@ using UnityEngine.UI;
 
 public class EditorGUIUtility_Window : EditorWindow
 {
-    [MenuItem("×Ô¶¨ÒåÀ©Õ¹´°¿Ú/EditorGUIUtility±à¼­Æ÷´°¿Ú")]
+    [MenuItem("è‡ªå®šä¹‰æ‰©å±•çª—å£/EditorGUIUtilityç¼–è¾‘å™¨çª—å£")]
     public static void ShowWindow()
     {
-        Editor_Window window = EditorWindow.GetWindow<Editor_Window>();
-        window.titleContent = new GUIContent("EditorGUIUtility±à¼­Æ÷´°¿Ú");
+        EditorGUIUtility_Window window = EditorWindow.GetWindow<EditorGUIUtility_Window>();
+        window.titleContent = new GUIContent("EditorGUIUtilityç¼–è¾‘å™¨çª—å£");
         window.Show();
     }
 
+    Texture img;
+    Texture img1;
+
+    private void OnGUI()
+    {
+        if (GUILayout.Button("åŠ è½½ä¸€å¼ å›¾ç‰‡"))
+        {
+            string imgName = "img_editor.png";
+            img = EditorGUIUtility.Load(imgName) as Texture;
+            if (img != null)
+                GUI.DrawTexture(new Rect(100, 100, 50, 50), img);
+            else
+                Debug.LogError("åŠ è½½å›¾ç‰‡å¤±è´¥ï¼š" + imgName);
+        }
+       
+    }
 }

@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class Editor_Window : EditorWindow
 {
-    [MenuItem("×Ô¶¨ÒåÀ©Õ¹´°¿Ú/EditorGUILayout±à¼­Æ÷´°¿Ú")]
+    [MenuItem("è‡ªå®šä¹‰æ‰©å±•çª—å£/EditorGUILayoutç¼–è¾‘å™¨çª—å£")]
     public static void ShowWindow()
     {
         Editor_Window window = EditorWindow.GetWindow<Editor_Window>();
-        window.titleContent = new GUIContent("EditorGUILayout±à¼­Æ÷´°¿Ú");
+        window.titleContent = new GUIContent("EditorGUILayoutç¼–è¾‘å™¨çª—å£");
         window.Show();
     }
     public enum E_TestType
@@ -64,98 +64,98 @@ public class Editor_Window : EditorWindow
     Vector2 vector2;
     private void OnGUI()
     {
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        layer = EditorGUILayout.LayerField("²ã¼¶Ñ¡Ôñ", layer);
-        tag = EditorGUILayout.TagField("±êÇ©Ñ¡Ôñ", tag);
-        color = EditorGUILayout.ColorField(new GUIContent("²âÊÔÑÕÉ«"), color , true, true, false);
-        type1 = (E_TestType)EditorGUILayout.EnumPopup("Ã¶¾ÙÑ¡Ôñ", type1);
-        type2 = (E_TestType)EditorGUILayout.EnumFlagsField("¶àÑ¡Ã¶¾ÙÑ¡Ôñ", type2);
-        testNum = EditorGUILayout.IntPopup("ÕûÊıµ¥Ñ¡¿ò", testNum, testStringArray, testNumArray);
-        if (EditorGUILayout.DropdownButton(new GUIContent("µã»÷Á¢¼´´¥·¢"), FocusType.Passive))
-            Debug.Log("µã»÷Á¢¼´´¥·¢");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        layer = EditorGUILayout.LayerField("å±‚çº§é€‰æ‹©", layer);
+        tag = EditorGUILayout.TagField("æ ‡ç­¾é€‰æ‹©", tag);
+        color = EditorGUILayout.ColorField(new GUIContent("æµ‹è¯•é¢œè‰²"), color , true, true, false);
+        type1 = (E_TestType)EditorGUILayout.EnumPopup("æšä¸¾é€‰æ‹©", type1);
+        type2 = (E_TestType)EditorGUILayout.EnumFlagsField("å¤šé€‰æšä¸¾é€‰æ‹©", type2);
+        testNum = EditorGUILayout.IntPopup("æ•´æ•°å•é€‰æ¡†", testNum, testStringArray, testNumArray);
+        if (EditorGUILayout.DropdownButton(new GUIContent("ç‚¹å‡»ç«‹å³è§¦å‘"), FocusType.Passive))
+            Debug.Log("ç‚¹å‡»ç«‹å³è§¦å‘");
 
-        foldout = EditorGUILayout.Foldout(foldout, "ÕÛµş");
+        foldout = EditorGUILayout.Foldout(foldout, "æŠ˜å ");
         if (foldout)
         {
-            EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-            EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-            EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
+            EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+            EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+            EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
         }
-        foldoutGroup = EditorGUILayout.BeginFoldoutHeaderGroup(foldoutGroup, "ÕÛµş×é");
+        foldoutGroup = EditorGUILayout.BeginFoldoutHeaderGroup(foldoutGroup, "æŠ˜å ç»„");
         if (foldoutGroup)
         {
             img = EditorGUILayout.ObjectField(img, typeof(Image), false) as Image;
 
-            i = EditorGUILayout.IntField("IntÊäÈë¿ò", i);
+            i = EditorGUILayout.IntField("Intè¾“å…¥æ¡†", i);
             EditorGUILayout.LabelField(i.ToString());
-            l = EditorGUILayout.LongField("longÊäÈë¿ò", l);
-            f = EditorGUILayout.FloatField("Float ÊäÈë£º", f);
-            d = EditorGUILayout.DoubleField("double ÊäÈë£º", d);
+            l = EditorGUILayout.LongField("longè¾“å…¥æ¡†", l);
+            f = EditorGUILayout.FloatField("Float è¾“å…¥ï¼š", f);
+            d = EditorGUILayout.DoubleField("double è¾“å…¥ï¼š", d);
 
-            str = EditorGUILayout.TextField("TextÊäÈë£º", str);
-            vec2 = EditorGUILayout.Vector2Field("Vec2ÊäÈë£º ", vec2);
-            vec3 = EditorGUILayout.Vector3Field("Vec3ÊäÈë£º ", vec3);
-            vec4 = EditorGUILayout.Vector4Field("Vec4ÊäÈë£º ", vec4);
+            str = EditorGUILayout.TextField("Textè¾“å…¥ï¼š", str);
+            vec2 = EditorGUILayout.Vector2Field("Vec2è¾“å…¥ï¼š ", vec2);
+            vec3 = EditorGUILayout.Vector3Field("Vec3è¾“å…¥ï¼š ", vec3);
+            vec4 = EditorGUILayout.Vector4Field("Vec4è¾“å…¥ï¼š ", vec4);
 
-            rect = EditorGUILayout.RectField("rectÊäÈë£º ", rect);
-            bounds = EditorGUILayout.BoundsField("BoundsÊäÈë£º ", bounds);
-            boundsInt = EditorGUILayout.BoundsIntField("BoundsÊäÈë£º ", boundsInt);
+            rect = EditorGUILayout.RectField("rectè¾“å…¥ï¼š ", rect);
+            bounds = EditorGUILayout.BoundsField("Boundsè¾“å…¥ï¼š ", bounds);
+            boundsInt = EditorGUILayout.BoundsIntField("Boundsè¾“å…¥ï¼š ", boundsInt);
 
-            i2 = EditorGUILayout.DelayedIntField("IntÊäÈë¿ò", i2);
+            i2 = EditorGUILayout.DelayedIntField("Intè¾“å…¥æ¡†", i2);
             EditorGUILayout.LabelField(i2.ToString());
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 
-        toogle = EditorGUILayout.Toggle("¿ª¹Ø", toogle);
-        tooglel = EditorGUILayout.ToggleLeft("¿ª¹ØÔÚ×ó²à", tooglel);
-        toogleg = EditorGUILayout.BeginToggleGroup("¿ª¹Ø×é", toogleg);
+        toogle = EditorGUILayout.Toggle("å¼€å…³", toogle);
+        tooglel = EditorGUILayout.ToggleLeft("å¼€å…³åœ¨å·¦ä¾§", tooglel);
+        toogleg = EditorGUILayout.BeginToggleGroup("å¼€å…³ç»„", toogleg);
         if (toogleg)
         {
-            EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-            EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-            EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
+            EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+            EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+            EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
         }       
         EditorGUILayout.EndToggleGroup();
 
-        sliderf = EditorGUILayout.Slider("»¬¶¯Ìõ", sliderf, 1, 10);
-        slideri = EditorGUILayout.IntSlider("ÕûÊıÖµ»¬¶¯Ìõ", slideri, 1, 10);
-        EditorGUILayout.MinMaxSlider("Ë«¿é»¬¶¯Ìõ", ref sleft, ref sright, 1, 10);
+        sliderf = EditorGUILayout.Slider("æ»‘åŠ¨æ¡", sliderf, 1, 10);
+        slideri = EditorGUILayout.IntSlider("æ•´æ•°å€¼æ»‘åŠ¨æ¡", slideri, 1, 10);
+        EditorGUILayout.MinMaxSlider("åŒå—æ»‘åŠ¨æ¡", ref sleft, ref sright, 1, 10);
 
-        EditorGUILayout.HelpBox("Ò»°ãÌáÊ¾", MessageType.None);
-        EditorGUILayout.HelpBox("¸ĞÌ¾ºÅÌáÊ¾", MessageType.Info);
-        EditorGUILayout.HelpBox("¾¯¸æ·ûºÅÌáÊ¾", MessageType.Warning);
-        EditorGUILayout.HelpBox("´íÎó·ûºÅÌáÊ¾", MessageType.Error);
+        EditorGUILayout.HelpBox("ä¸€èˆ¬æç¤º", MessageType.None);
+        EditorGUILayout.HelpBox("æ„Ÿå¹å·æç¤º", MessageType.Info);
+        EditorGUILayout.HelpBox("è­¦å‘Šç¬¦å·æç¤º", MessageType.Warning);
+        EditorGUILayout.HelpBox("é”™è¯¯ç¬¦å·æç¤º", MessageType.Error);
 
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
         EditorGUILayout.Space(10);
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
 
-        animation = EditorGUILayout.CurveField("¶¯»­ÇúÏß£º", animation);
+        animation = EditorGUILayout.CurveField("åŠ¨ç”»æ›²çº¿ï¼š", animation);
 
         EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
         EditorGUILayout.EndHorizontal();
 
         vector2 =  EditorGUILayout.BeginScrollView(vector2);
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
-        EditorGUILayout.LabelField("ÎÄ±¾±êÌâ", "ÎÄ±¾ÄÚÈİ");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
+        EditorGUILayout.LabelField("æ–‡æœ¬æ ‡é¢˜", "æ–‡æœ¬å†…å®¹");
         EditorGUILayout.EndScrollView();
 
     }
