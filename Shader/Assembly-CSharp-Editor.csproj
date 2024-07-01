@@ -62,7 +62,8 @@
   <ItemGroup>
     <Compile Include="Assets\Editor\Editor_Study\EditorMenu.cs" />
     <Compile Include="Assets\Editor\Editor_Study\Editor_Inspector.cs" />
-    <Compile Include="Assets\Editor\Editor_Study\Editor_Window.cs" />
+    <Compile Include="Assets\Editor\Editor_Study\EditorSelection_Window.cs" />
+    <Compile Include="Assets\Editor\Editor_Study\EditorGUILayout_Window.cs" />
     <Compile Include="Assets\Editor\Editor_Study\EditorGUIUtility_Window.cs" />
   </ItemGroup>
   <ItemGroup>

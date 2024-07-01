@@ -4,12 +4,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Editor_Window : EditorWindow
+public class EditorGUILayout_Window : EditorWindow
 {
     [MenuItem("自定义扩展窗口/EditorGUILayout编辑器窗口")]
     public static void ShowWindow()
     {
-        Editor_Window window = EditorWindow.GetWindow<Editor_Window>();
+        EditorGUILayout_Window window = EditorWindow.GetWindow<EditorGUILayout_Window>();
         window.titleContent = new GUIContent("EditorGUILayout编辑器窗口");
         window.Show();
     }
@@ -58,7 +58,7 @@ public class Editor_Window : EditorWindow
     float sleft;
     float sright;
 
-    AnimationCurve animation;
+    AnimationCurve animation = new AnimationCurve();
 
 
     Vector2 vector2;
