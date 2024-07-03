@@ -60,6 +60,7 @@
     <Analyzer Include="D:\Unity 2022.3.20f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\EditorInspector\TestEditorInspector.cs" />
     <Compile Include="Assets\Script\EditorMenu\EditorMenu_01.cs" />
   </ItemGroup>
   <ItemGroup>
