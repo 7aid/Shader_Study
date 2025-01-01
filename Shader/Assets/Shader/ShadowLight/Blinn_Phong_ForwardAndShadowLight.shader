@@ -21,8 +21,9 @@ Shader "MyShader/Blinn_Phong_Attenuation"
             #pragma vertex vert
             #pragma fragment frag
             //用于帮助我们编译所有变体 并且保证衰减相关光照变量能够正确赋值到对应的内置变量中
-            #pragma multi_compile_fwdbase         
-
+            //#pragma multi_compile_fwdbase     
+            //Unity会生成多个包括支持和不支持阴影的Shader变体，从而为额外的逐像素光源计算阴影，并传递给Shader了
+            #pragma multi_compile_fwdadd_fullshadows
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
             //用于得到阴影接收的3个宏
@@ -111,7 +112,7 @@ Shader "MyShader/Blinn_Phong_Attenuation"
 
             //该指令保证我们在附加渲染通道中能访问到正确的光照变量并且会帮助我们编译Additional Pass中所有变体
             //#pragma multi_compile_fwdadd
-
+            //Unity会生成多个包括支持和不支持阴影的Shader变体，从而为额外的逐像素光源计算阴影，并传递给Shader了
             #pragma multi_compile_fwdadd_fullshadows
 
             #include "UnityCG.cginc"

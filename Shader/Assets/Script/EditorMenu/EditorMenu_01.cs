@@ -1,8 +1,8 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("±à¼­Æ÷½Å±¾¹¤¾ß/EditorMenu_01")]
+[AddComponentMenu("ç¼–è¾‘å™¨è„šæœ¬å·¥å…·/EditorMenu_01")]
 public class EditorMenu_01 : MonoBehaviour
 {
     // Start is called before the first frame update

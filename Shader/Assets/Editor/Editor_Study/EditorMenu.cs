@@ -5,32 +5,32 @@ using UnityEngine;
 
 public class EditorMenu : Editor
 {
-    [MenuItem("Ò³Ç©/Ò»¼¶Ñ¡Ïî/¶ş¼¶Ñ¡Ïî")]
+    [MenuItem("é¡µç­¾/ä¸€çº§é€‰é¡¹/äºŒçº§é€‰é¡¹")]
     private static void EditorTest01()
     {
         Debug.Log("EditorTest01");
     }
-    [MenuItem("GameObject/Ò³Ç©/Ò»¼¶Ñ¡Ïî/¶ş¼¶Ñ¡Ïî")]
+    [MenuItem("GameObject/é¡µç­¾/ä¸€çº§é€‰é¡¹/äºŒçº§é€‰é¡¹")]
     private static void EditorTest02()
     {
         Debug.Log("EditorTest02");
     }
-    [MenuItem("Assets/Ò³Ç©/Ò»¼¶Ñ¡Ïî/¶ş¼¶Ñ¡Ïî")]
+    [MenuItem("Assets/é¡µç­¾/ä¸€çº§é€‰é¡¹/äºŒçº§é€‰é¡¹")]
     private static void EditorTest03()
     {
         Debug.Log("EditorTest03");
     }
-    [MenuItem("CONTEXT/Light/Ìí¼Ó½Å±¾")]
+    [MenuItem("CONTEXT/Light/æ·»åŠ è„šæœ¬")]
     private static void EditorTest05()
     {
         Debug.Log("EditorTest05");
     }
-    [MenuItem("¿ì½İ¼ü/µ¥¿ì½İ _A")]
+    [MenuItem("å¿«æ·é”®/å•å¿«æ· _A")]
     private static void EditorTest06()
     {
         Debug.Log("EditorTest06");
     }
-    [MenuItem("¿ì½İ¼ü/×éºÏ¿ì½İ _%#&A")]
+    [MenuItem("å¿«æ·é”®/ç»„åˆå¿«æ· _%#&A")]
     private static void EditorTest07()
     {
         Debug.Log("EditorTest07");

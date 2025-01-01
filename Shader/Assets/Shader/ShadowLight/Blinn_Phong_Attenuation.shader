@@ -84,7 +84,8 @@ Shader "MyShader/Blinn_Phong_Attenuation"
                //布林方高光反射
                fixed3 phongSpecular = getBlinnPhoneSpecularColor(i.wnormal, i.wpos);
                //衰减光
-               fixed atten = 1;
+               //fixed atten = 1;
+               UNITY_LIGHT_ATTENUATION(atten, i, i.wpos)
                //该宏在片元着色器中调用，传入对应的v2f结构体对象，该宏会在内部利用v2f中的 阴影纹理坐标变量(ShadowCoord)对相关纹理进行采样，
                //将采样得到的深度值进行比较，以计算出一个fixed3的阴影衰减值，我们只需要使用它返回的结果和 (漫反射+高光反射) 的结果相乘即可
                fixed3 shadow = SHADOW_ATTENUATION(i);
@@ -106,10 +107,12 @@ Shader "MyShader/Blinn_Phong_Attenuation"
             #pragma fragment frag
 
             //该指令保证我们在附加渲染通道中能访问到正确的光照变量并且会帮助我们编译Additional Pass中所有变体
-            #pragma multi_compile_fwdadd
-
+            //#pragma multi_compile_fwdadd
+            //Unity会生成多个包括支持和不支持阴影的Shader变体，从而为额外的逐像素光源计算阴影，并传递给Shader了
+            #pragma multi_compile_fwdadd_fullshadows
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
+            #include "AutoLight.cginc"
 
             fixed4 _MainColor;
             fixed4 _SpecularColor;
@@ -164,34 +167,36 @@ Shader "MyShader/Blinn_Phong_Attenuation"
                fixed3 lambertColor = getLambertColor(i.wnormal, wLightDir);
                //布林方高光反射
                fixed3 phongSpecularColor = getBlinnPhoneSpecularColor(i.wnormal, i.wpos, wLightDir);
-
+               //手动处理各种光源的衰减值
                //获取光的衰减和光的遮罩
                //兰伯特漫反射
-               #if defined(_DIRECTIONAL_LIGHT)
-               //平行光没有衰减信息
-               fixed atten = 1;
-               #elif defined(_POINT_LIGHT)
-               //点光源
-               //将顶点从世界空间转换到光源空间
-               fixed3 lightCoord = mul(unity_WorldToLight, float4(i.wpos, 1));
-               //在CG中没有bool值 只有0和1来代表false和true，所以此处的lightCoord.z > 0来判断顶点在光的前方还是后方
-               //后方表示没有受到光的衰减
-               fixed atten = (lightCoord.z > 0) * tex2D(_LightTexture0, dot(lightCoord, lightCoord).xx).UNITY_ATTEN_CHANNEL;
-               #elif defined(_SPOT_LIGHT)
-               //聚光灯
-                //将顶点从世界空间转换到光源空间,保留w是聚光灯需要w取出遮罩衰减信息
-               fixed4 lightCoord = mul(unity_WorldToLight, float4(i.wpos, 1));
-               //聚光灯衰减是在_LightTextureB0里获取的，遮罩衰减是在_LightTexture0获取
-               fixed atten = (lightCoord.z > 0) 
-               //需要将各个横截面映射到最大的面上进行采用, 需要将uv坐标映射到0~1的范围再从纹理中采用，
-               //lightCoord.xy / lightCoord.w 进行缩放后x，y的取值范围是-0.5~0.5之间，加上0.5转换至0~1
-               * tex2D(_LightTexture0, lightCoord.xy / lightCoord.w + 0.5).w;
-               * tex2D(_LightTextureB0, dot(lightCoord, lightCoord).xx).UNITY_ATTEN_CHANNEL;
-               #else
-               //其它逻辑
-               fixed atten = 1;
-               #endif
-   
+               //#if defined(_DIRECTIONAL_LIGHT)
+               ////平行光没有衰减信息
+               //   fixed atten = 1;
+               //#elif defined(_POINT_LIGHT)
+               //   //点光源
+               //   //将顶点从世界空间转换到光源空间
+               //   fixed3 lightCoord = mul(unity_WorldToLight, float4(i.wpos, 1));
+               //   //在CG中没有bool值 只有0和1来代表false和true，所以此处的lightCoord.z > 0来判断顶点在光的前方还是后方
+               //   //后方表示没有受到光的衰减
+               //   fixed atten = (lightCoord.z > 0) * tex2D(_LightTexture0, dot(lightCoord, lightCoord).xx).UNITY_ATTEN_CHANNEL;
+               //#elif defined(_SPOT_LIGHT)
+               //   //聚光灯
+               //    //将顶点从世界空间转换到光源空间,保留w是聚光灯需要w取出遮罩衰减信息
+               //   fixed4 lightCoord = mul(unity_WorldToLight, float4(i.wpos, 1));
+               //   //聚光灯衰减是在_LightTextureB0里获取的，遮罩衰减是在_LightTexture0获取
+               //   fixed atten = (lightCoord.z > 0) 
+               //   //需要将各个横截面映射到最大的面上进行采用, 需要将uv坐标映射到0~1的范围再从纹理中采用，
+               //   //lightCoord.xy / lightCoord.w 进行缩放后x，y的取值范围是-0.5~0.5之间，加上0.5转换至0~1
+               //   * tex2D(_LightTexture0, lightCoord.xy / lightCoord.w + 0.5).w;
+               //   * tex2D(_LightTextureB0, dot(lightCoord, lightCoord).xx).UNITY_ATTEN_CHANNEL;
+               //#else
+               //   //其它逻辑
+               //   fixed atten = 1;
+               //#endif
+               
+               //使用该宏自动处理衰减过程
+               UNITY_LIGHT_ATTENUATION(atten, i , i.wpos)
                //因为在Base Pass算过一次环境光，所以此处不需要再算一次
                fixed3 color = (lambertColor + phongSpecularColor) * atten;
                return fixed4(color, 1);
@@ -235,5 +240,5 @@ Shader "MyShader/Blinn_Phong_Attenuation"
         //    ENDCG
         //}
     }
-            Fallback "Specular"
+    Fallback "Specular"
 }

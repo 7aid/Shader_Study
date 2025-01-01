@@ -73,7 +73,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
-    - _SpecularGloss: 15
+    - _SpecularGloss: 7
     - _SpecularHighlights: 1
     - _SpecularNum: 15
     - _SrcBlend: 1
