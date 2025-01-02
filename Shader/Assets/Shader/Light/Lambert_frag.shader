@@ -1,4 +1,4 @@
-//兰伯特光照逐片元光照
+//半兰伯特光照逐片元光照
 Shader "MyShader/Lambert_frag"
 {
     Properties
