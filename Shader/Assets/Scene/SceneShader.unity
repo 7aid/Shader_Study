@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5085541, g: 0.40664518, b: 0.28131998, a: 1}
+  m_IndirectSpecularColor: {r: 0.5085544, g: 0.40656903, b: 0.28144336, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -318,7 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 29452964}
   m_Layer: 0
-  m_Name: ShadowLight_Transparent
+  m_Name: "ShadowLight_Transparent(\u5149\u7167\u9634\u5F71\u900F\u660E)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1703,12 +1703,12 @@ GameObject:
   m_Component:
   - component: {fileID: 364703084}
   m_Layer: 0
-  m_Name: DynamicTexture
+  m_Name: "DynamicTexture(\u52A8\u6001\u751F\u6210\u7EB9\u7406)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &364703084
 Transform:
   m_ObjectHideFlags: 0
@@ -2461,7 +2461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 592269046}
   m_Layer: 0
-  m_Name: Model
+  m_Name: "Model(\u6A21\u578B)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2919,7 +2919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 691263263}
   m_Layer: 0
-  m_Name: ShadowLight
+  m_Name: "ShadowLight(\u5149\u7167\u9634\u5F71)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4649,7 +4649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1098654199}
   m_Layer: 0
-  m_Name: Light
+  m_Name: "Light(\u5149\u7167)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5834,6 +5834,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1098654199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1367218325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367218326}
+  m_Layer: 0
+  m_Name: "DynamicEffect(\u52A8\u6001\u6548\u679C\u5B9E\u73B0)"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1367218326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367218325}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.8094554, y: 3.8186111, z: -1.2204944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1370435223
 GameObject:
   m_ObjectHideFlags: 0
@@ -6264,7 +6295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1472272141}
   m_Layer: 0
-  m_Name: ShadowLight_NoTransparent
+  m_Name: "ShadowLight_NoTransparent(\u5149\u7167\u9634\u5F71\u4E0D\u900F\u660E)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7207,7 +7238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1575314247}
   m_Layer: 0
-  m_Name: HighTexture
+  m_Name: "HighTexture(\u9AD8\u7EA7\u7EB9\u7406)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8057,7 +8088,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1913241473}
   m_Layer: 0
-  m_Name: ForwardLight
+  m_Name: "ForwardLight(\u5149\u7167\u524D\u5411\u6E32\u67D3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8908,3 +8939,4 @@ SceneRoots:
   - {fileID: 29452964}
   - {fileID: 1575314247}
   - {fileID: 364703084}
+  - {fileID: 1367218326}
