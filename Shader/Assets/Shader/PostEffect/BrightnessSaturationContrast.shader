@@ -60,7 +60,7 @@ Shader "MyShader/BrightnessSaturationContrast"
                 //亮度
                 fixed3 finalColor = renderTexcolor * _Brightness;
                 //饱和度 
-                fixed L = finalColor.r * 0.2126 + finalColor.g * 0.7152 + finalColor.b * 0.722;
+                fixed L = finalColor.r * 0.2126 + finalColor.g * 0.7152 + finalColor.b * 0.0722;
                 fixed3 LColor = fixed3(L, L, L);
                 finalColor = lerp(LColor, finalColor, _Saturation);
                 //对比度计算
