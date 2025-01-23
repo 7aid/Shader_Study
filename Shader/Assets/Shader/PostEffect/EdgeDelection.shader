@@ -7,6 +7,10 @@ Shader "MyShader/EdgeDelection"
         _MainTex("MainTex", 2D) = "white" {}
         //边缘颜色
         _EdgeColor("EdgeColor", Color) = (1,1,1,1)
+        //0表示保留图片原始颜色，1表示完全抛弃图片原始颜色
+        _BackGroundExtent("BackGroundExtent",Range(0,1)) = 1
+        //替换图片原始颜色的颜色
+        _BackGroundColor("BackGroundColor", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -34,6 +38,8 @@ Shader "MyShader/EdgeDelection"
             float4 _MainTex_ST;
             float4 _MainTex_TexelSize;
             float4 _EdgeColor;
+            float4 _BackGroundColor;
+            float _BackGroundExtent;
 
             struct v2f
             {
@@ -96,8 +102,11 @@ Shader "MyShader/EdgeDelection"
                 //利用索贝尔算子计算梯度值
                 half edge = sobel(i);   
                 //利用计算出来的梯度值在原始颜色 和边缘线颜色之间进行插值
-                fixed4 color = lerp(tex2D(_MainTex, i.uv[4]), _EdgeColor , edge);               
-                return color;
+                fixed4 withEdgeColor = lerp(tex2D(_MainTex, i.uv[4]), _EdgeColor , edge);  
+                //纯色上描边
+                fixed4 onlyEdgeColor = lerp(_BackGroundColor, _EdgeColor, edge);
+                //通过程度变量 去控制 是纯色描边 还是 原始颜色描边 在两者之间 进行过渡
+                return lerp(withEdgeColor, onlyEdgeColor, _BackGroundExtent);
             }
             ENDCG
         }
