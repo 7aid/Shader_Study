@@ -67,6 +67,7 @@ Shader "MyShader/GaussianBlur"
                     
          Pass
          {
+             Name "GAUSSIAN_BLUR_HORIZONTAL"
              CGPROGRAM
              #pragma vertex vertBlurHorizontal
              #pragma fragment fragBlur
@@ -94,6 +95,7 @@ Shader "MyShader/GaussianBlur"
 
         Pass
         {
+            Name "GAUSSIAN_BLUR_VERTICAL"
              CGPROGRAM
              #pragma vertex vertBlurVertical
              #pragma fragment fragBlur
