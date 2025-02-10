@@ -1,21 +1,21 @@
-//ÊÀ½ç¿Õ¼äÏÂ ÊµÏÖ·¨ÏßÎÆÀí£¬¹âÕÕÒõÓ°shader(ÎŞ¸ß¹â)
-Shader "MyShader/Texture_Diffuse2_ShadowLight"
+//ä¸–ç•Œç©ºé—´ä¸‹ å®ç°æ³•çº¿çº¹ç†ï¼Œå…‰ç…§é˜´å½±shader(æ— é«˜å…‰)
+Shader "MyShader/ShadowLight/Texture_Diffuse2_ShadowLight"
 {
     Properties
-    {   //²ÄÖÊÂş·´ÉäÑÕÉ«
+    {   //æè´¨æ¼«åå°„é¢œè‰²
         _MainColor("MainColor",Color) = (1,1,1,1)
-        //µ¥ÕÅÎÆÀíĞÅÏ¢
+        //å•å¼ çº¹ç†ä¿¡æ¯
         _MainTex ("MainTex", 2D) = ""{}
-        //·¨ÏßÎÆÀíĞÅÏ¢
+        //æ³•çº¿çº¹ç†ä¿¡æ¯
         _BumpTex("BumpTex", 2D) = ""{}
-        //°¼Í¹³Ì¶È
+        //å‡¹å‡¸ç¨‹åº¦
         _BumpNum("BumpNum", Range(0,2)) = 1
     }
     SubShader
     {
         Tags {"RenderType" = "Opaque" "Queue" ="Geometry"}
         Pass
-        {   //ÉèÖÃ¹âäÖÈ¾·½Ê½£¬²»Í¸Ã÷ÎïÌåÊ¹ÓÃÏòÇ°äÖÈ¾
+        {   //è®¾ç½®å…‰æ¸²æŸ“æ–¹å¼ï¼Œä¸é€æ˜ç‰©ä½“ä½¿ç”¨å‘å‰æ¸²æŸ“
             Tags { "LightMode"="ForwardBase"}
             CGPROGRAM
             #pragma vertex vert
@@ -28,55 +28,55 @@ Shader "MyShader/Texture_Diffuse2_ShadowLight"
 
             struct v2f
             {
-                //²Ã¼ô¿Õ¼ä×ø±ê
+                //è£å‰ªç©ºé—´åæ ‡
                 fixed4 pos:SV_POSITION;
                 //float2 uvTex:TEXCOORD0;
                 //float2 uvBump:TEXCOORD1;
-                //ÎÒÃÇ¿ÉÒÔµ¥¶ÀµÄÉùÃ÷Á½¸öfloat2µÄ³ÉÔ±ÓÃÓÚ¼ÇÂ¼ ÑÕÉ«ºÍ·¨ÏßÎÆÀíµÄuv×ø±ê
-                //Ò²¿ÉÒÔÖ±½ÓÉùÃ÷Ò»¸öfloat4µÄ³ÉÔ± xyÓÃÓÚ¼ÇÂ¼ÑÕÉ«ÎÆÀíµÄuv£¬zwÓÃÓÚ¼ÇÂ¼·¨ÏßÎÆÀíµÄuv
+                //æˆ‘ä»¬å¯ä»¥å•ç‹¬çš„å£°æ˜ä¸¤ä¸ªfloat2çš„æˆå‘˜ç”¨äºè®°å½• é¢œè‰²å’Œæ³•çº¿çº¹ç†çš„uvåæ ‡
+                //ä¹Ÿå¯ä»¥ç›´æ¥å£°æ˜ä¸€ä¸ªfloat4çš„æˆå‘˜ xyç”¨äºè®°å½•é¢œè‰²çº¹ç†çš„uvï¼Œzwç”¨äºè®°å½•æ³•çº¿çº¹ç†çš„uv
                 fixed4 uv:TEXCOORD0;
-                //ÊÀ½ç¿Õ¼ä×ø±ê
+                //ä¸–ç•Œç©ºé—´åæ ‡
                 //fixed4 wPos:TEXCOORD1;
-                //¾ØÕó  ÇĞÏß¿Õ¼äµ½ÊÀ½ç¿Õ¼ä
+                //çŸ©é˜µ  åˆ‡çº¿ç©ºé—´åˆ°ä¸–ç•Œç©ºé—´
                 //float3x3 mulT2W:TEXCOORD2;
-                //ÎªÁËÌá¸ßGPU´¦ÀíĞ§ÂÊ½«float3x3µÄ¾ØÕóĞŞ¸ÄÎªfloat4µÄ¾ØÕó£¬²¢ÓÃwÀ´´æwPos×ø±ê
+                //ä¸ºäº†æé«˜GPUå¤„ç†æ•ˆç‡å°†float3x3çš„çŸ©é˜µä¿®æ”¹ä¸ºfloat4çš„çŸ©é˜µï¼Œå¹¶ç”¨wæ¥å­˜wPosåæ ‡
                 float4 mulLine1:TEXCOORD2;
                 float4 mulLine2:TEXCOORD3;
                 float4 mulLine3:TEXCOORD4;
                 
                 SHADOW_COORDS(5)
             };
-            //²ÄÖÊÂş·´ÉäÑÕÉ«
+            //æè´¨æ¼«åå°„é¢œè‰²
             fixed4 _MainColor;
-            //ÎÆÀí
+            //çº¹ç†
             sampler2D _MainTex;
-            //ÎÆÀíµÄËõ·ÅºÍÆ«ÒÆ
+            //çº¹ç†çš„ç¼©æ”¾å’Œåç§»
             fixed4 _MainTex_ST;
-            //·¨ÏßÎÆÀí
+            //æ³•çº¿çº¹ç†
             sampler2D _BumpTex;
-            //·¨ÏßÎÆÀíµÄËõ·ÅºÍÆ«ÒÆ
+            //æ³•çº¿çº¹ç†çš„ç¼©æ”¾å’Œåç§»
             fixed4 _BumpTex_ST;
-            //°¼Í¹³Ì¶È
+            //å‡¹å‡¸ç¨‹åº¦
             float _BumpNum;
 
             v2f vert (appdata_full full)
             {
                 v2f data;
                 data.pos = UnityObjectToClipPos(full.vertex);
-                //Ö÷ÌûÍ¼uv×ø±ê
+                //ä¸»å¸–å›¾uvåæ ‡
                 data.uv.xy = full.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-                //·¨ÏßÌùÍ¼uv×ø±ê
+                //æ³•çº¿è´´å›¾uvåæ ‡
                 data.uv.zw = full.texcoord.xy * _BumpTex_ST.xy + _BumpTex_ST.zw;
-                //ÊÀ½ç¿Õ¼ä·¨Ïß
+                //ä¸–ç•Œç©ºé—´æ³•çº¿
                 fixed3 wNormal = UnityObjectToWorldNormal(full.normal);
-                //ÊÀ½ç¿Õ¼äÇĞÏß
+                //ä¸–ç•Œç©ºé—´åˆ‡çº¿
                 fixed3 wTangent = UnityObjectToWorldDir(full.tangent.xyz);
-                //ÊÀ½ç¿Õ¼ä¸±ÇĞÏß
+                //ä¸–ç•Œç©ºé—´å‰¯åˆ‡çº¿
                 fixed3 wbiTangent = cross(normalize(wTangent), normalize(wNormal)) * full.tangent.w;
-                //¾ØÕó  ÊÀ½ç¿Õ¼äµ½ÇĞÏß¿Õ¼äµÄ
+                //çŸ©é˜µ  ä¸–ç•Œç©ºé—´åˆ°åˆ‡çº¿ç©ºé—´çš„
                 //float3x3 mulW2T = float3x3(full.tangent.xyz, biTangent, full.normal);
                 fixed3 wPos = mul(unity_ObjectToWorld, full.vertex).xyz;
-                //¾ØÕó  ÇĞÏß¿Õ¼äµ½ÊÀ½ç¿Õ¼ä
+                //çŸ©é˜µ  åˆ‡çº¿ç©ºé—´åˆ°ä¸–ç•Œç©ºé—´
                 //float3x3 mulT2W = float3x3
                 //(
                 //float3(full.tangent.x, biTangent.x, full.normal.x),
@@ -96,32 +96,32 @@ Shader "MyShader/Texture_Diffuse2_ShadowLight"
             fixed4 frag (v2f data) : SV_Target
             {
                 fixed3 color;
-                //È¡³ö·¨ÏßÌùÍ¼µÄ·¨ÏßĞÅÏ¢
+                //å–å‡ºæ³•çº¿è´´å›¾çš„æ³•çº¿ä¿¡æ¯
                 float4 packNormal = tex2D(_BumpTex, data.uv.zw);
-                //ÓÉÓÚ·¨ÏßXYZ·ÖÁ¿·¶Î§ÔÚ[-1£¬1]Ö®¼ä¶øÏñËØRGB·ÖÁ¿·¶Î§ÔÚ[0£¬1]Ö®¼ä
+                //ç”±äºæ³•çº¿XYZåˆ†é‡èŒƒå›´åœ¨[-1ï¼Œ1]ä¹‹é—´è€Œåƒç´ RGBåˆ†é‡èŒƒå›´åœ¨[0ï¼Œ1]ä¹‹é—´
                 //normalTex = normalTex * 2 - 1;
-                //Ò²¿ÉÒÔÊ¹ÓÃUnpackNormal·½·¨¶Ô·¨ÏßĞÅÏ¢½øĞĞÄæÔËËãÒÔ¼°¿ÉÄÜµÄ½âÑ¹ 
+                //ä¹Ÿå¯ä»¥ä½¿ç”¨UnpackNormalæ–¹æ³•å¯¹æ³•çº¿ä¿¡æ¯è¿›è¡Œé€†è¿ç®—ä»¥åŠå¯èƒ½çš„è§£å‹ 
                 float3 tangentNormal = UnpackNormal(packNormal);
-                //³ËÒÔBumpScaleÓÃÓÚ¿ØÖÆ°¼Í¹³Ì¶È
+                //ä¹˜ä»¥BumpScaleç”¨äºæ§åˆ¶å‡¹å‡¸ç¨‹åº¦
                 tangentNormal.xy *= _BumpNum;
                 tangentNormal.z = sqrt(1.0 - saturate(dot(tangentNormal.xy, tangentNormal.xy)));
-                //ÊÀ½ç¿Õ¼äÌùÍ¼·¨Ïß
+                //ä¸–ç•Œç©ºé—´è´´å›¾æ³•çº¿
                 //fixed3 wTangentNormal = mul(data.mulT2W, tangentNormal);
                 float3 wTangentNormal = float3(dot(data.mulLine1.xyz, tangentNormal), dot(data.mulLine2.xyz, tangentNormal),  dot(data.mulLine3.xyz, tangentNormal));
-                //Ö÷ÌùÍ¼ÑÕÉ«ºÍÂş·´ÉäÑÕÉ«µş¼Óµş¼Ó
+                //ä¸»è´´å›¾é¢œè‰²å’Œæ¼«åå°„é¢œè‰²å åŠ å åŠ 
                 fixed3 albedo = tex2D(_MainTex, data.uv.xy) * _MainColor.rgb;
-                //ÊÀ½ç¿Õ¼ä×ø±ê
+                //ä¸–ç•Œç©ºé—´åæ ‡
                 //fixed3 wPos = data.wPos;
                 fixed3 wPos = fixed3(data.mulLine1.w, data.mulLine2.w, data.mulLine3.w);
-                //±ê×¼»¯ÊÀ½ç¿Õ¼ä¹âÔ´·½Ïò
+                //æ ‡å‡†åŒ–ä¸–ç•Œç©ºé—´å…‰æºæ–¹å‘
                 fixed3 dirLight = normalize(UnityWorldSpaceLightDir(wPos));
-                //±ê×¼»¯ÊÀ½ç¿Õ¼äÊÓ½Ç·½Ïò
+                //æ ‡å‡†åŒ–ä¸–ç•Œç©ºé—´è§†è§’æ–¹å‘
                 fixed3 dirView = normalize(UnityWorldSpaceViewDir(wPos));
-                //»ñÈ¡À¼²®ÌØÂş·´Éä¹âÕÕÑÕÉ«
+                //è·å–å…°ä¼¯ç‰¹æ¼«åå°„å…‰ç…§é¢œè‰²
                 fixed3 lambertColor = _LightColor0.rgb * albedo * max(0, dot(wTangentNormal, dirLight));
 
                 UNITY_LIGHT_ATTENUATION(atten, data , wPos);
-                //»ñÈ¡²¼ÁÖ·½¹âÕÕÄ£ĞÍ
+                //è·å–å¸ƒæ—æ–¹å…‰ç…§æ¨¡å‹
                 color = UNITY_LIGHTMODEL_AMBIENT.rgb * albedo + lambertColor * atten;
                 return fixed4(color, 1);
 
@@ -145,55 +145,55 @@ Shader "MyShader/Texture_Diffuse2_ShadowLight"
 
             struct v2f
             {
-                //²Ã¼ô¿Õ¼ä×ø±ê
+                //è£å‰ªç©ºé—´åæ ‡
                 fixed4 pos:SV_POSITION;
                 //float2 uvTex:TEXCOORD0;
                 //float2 uvBump:TEXCOORD1;
-                //ÎÒÃÇ¿ÉÒÔµ¥¶ÀµÄÉùÃ÷Á½¸öfloat2µÄ³ÉÔ±ÓÃÓÚ¼ÇÂ¼ ÑÕÉ«ºÍ·¨ÏßÎÆÀíµÄuv×ø±ê
-                //Ò²¿ÉÒÔÖ±½ÓÉùÃ÷Ò»¸öfloat4µÄ³ÉÔ± xyÓÃÓÚ¼ÇÂ¼ÑÕÉ«ÎÆÀíµÄuv£¬zwÓÃÓÚ¼ÇÂ¼·¨ÏßÎÆÀíµÄuv
+                //æˆ‘ä»¬å¯ä»¥å•ç‹¬çš„å£°æ˜ä¸¤ä¸ªfloat2çš„æˆå‘˜ç”¨äºè®°å½• é¢œè‰²å’Œæ³•çº¿çº¹ç†çš„uvåæ ‡
+                //ä¹Ÿå¯ä»¥ç›´æ¥å£°æ˜ä¸€ä¸ªfloat4çš„æˆå‘˜ xyç”¨äºè®°å½•é¢œè‰²çº¹ç†çš„uvï¼Œzwç”¨äºè®°å½•æ³•çº¿çº¹ç†çš„uv
                 fixed4 uv:TEXCOORD0;
-                //ÊÀ½ç¿Õ¼ä×ø±ê
+                //ä¸–ç•Œç©ºé—´åæ ‡
                 //fixed4 wPos:TEXCOORD1;
-                //¾ØÕó  ÇĞÏß¿Õ¼äµ½ÊÀ½ç¿Õ¼ä
+                //çŸ©é˜µ  åˆ‡çº¿ç©ºé—´åˆ°ä¸–ç•Œç©ºé—´
                 //float3x3 mulT2W:TEXCOORD2;
-                //ÎªÁËÌá¸ßGPU´¦ÀíĞ§ÂÊ½«float3x3µÄ¾ØÕóĞŞ¸ÄÎªfloat4µÄ¾ØÕó£¬²¢ÓÃwÀ´´æwPos×ø±ê
+                //ä¸ºäº†æé«˜GPUå¤„ç†æ•ˆç‡å°†float3x3çš„çŸ©é˜µä¿®æ”¹ä¸ºfloat4çš„çŸ©é˜µï¼Œå¹¶ç”¨wæ¥å­˜wPosåæ ‡
                 float4 mulLine1:TEXCOORD2;
                 float4 mulLine2:TEXCOORD3;
                 float4 mulLine3:TEXCOORD4;
                 
                 SHADOW_COORDS(5)
             };
-            //²ÄÖÊÂş·´ÉäÑÕÉ«
+            //æè´¨æ¼«åå°„é¢œè‰²
             fixed4 _MainColor;
-            //ÎÆÀí
+            //çº¹ç†
             sampler2D _MainTex;
-            //ÎÆÀíµÄËõ·ÅºÍÆ«ÒÆ
+            //çº¹ç†çš„ç¼©æ”¾å’Œåç§»
             fixed4 _MainTex_ST;
-            //·¨ÏßÎÆÀí
+            //æ³•çº¿çº¹ç†
             sampler2D _BumpTex;
-            //·¨ÏßÎÆÀíµÄËõ·ÅºÍÆ«ÒÆ
+            //æ³•çº¿çº¹ç†çš„ç¼©æ”¾å’Œåç§»
             fixed4 _BumpTex_ST;
-            //°¼Í¹³Ì¶È
+            //å‡¹å‡¸ç¨‹åº¦
             float _BumpNum;
 
             v2f vert (appdata_full full)
             {
                 v2f data;
                 data.pos = UnityObjectToClipPos(full.vertex);
-                //Ö÷ÌûÍ¼uv×ø±ê
+                //ä¸»å¸–å›¾uvåæ ‡
                 data.uv.xy = full.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-                //·¨ÏßÌùÍ¼uv×ø±ê
+                //æ³•çº¿è´´å›¾uvåæ ‡
                 data.uv.zw = full.texcoord.xy * _BumpTex_ST.xy + _BumpTex_ST.zw;
-                //ÊÀ½ç¿Õ¼ä·¨Ïß
+                //ä¸–ç•Œç©ºé—´æ³•çº¿
                 fixed3 wNormal = UnityObjectToWorldNormal(full.normal);
-                //ÊÀ½ç¿Õ¼äÇĞÏß
+                //ä¸–ç•Œç©ºé—´åˆ‡çº¿
                 fixed3 wTangent = UnityObjectToWorldDir(full.tangent.xyz);
-                //ÊÀ½ç¿Õ¼ä¸±ÇĞÏß
+                //ä¸–ç•Œç©ºé—´å‰¯åˆ‡çº¿
                 fixed3 wbiTangent = cross(normalize(wTangent), normalize(wNormal)) * full.tangent.w;
-                //¾ØÕó  ÊÀ½ç¿Õ¼äµ½ÇĞÏß¿Õ¼äµÄ
+                //çŸ©é˜µ  ä¸–ç•Œç©ºé—´åˆ°åˆ‡çº¿ç©ºé—´çš„
                 //float3x3 mulW2T = float3x3(full.tangent.xyz, biTangent, full.normal);
                 fixed3 wPos = mul(unity_ObjectToWorld, full.vertex).xyz;
-                //¾ØÕó  ÇĞÏß¿Õ¼äµ½ÊÀ½ç¿Õ¼ä
+                //çŸ©é˜µ  åˆ‡çº¿ç©ºé—´åˆ°ä¸–ç•Œç©ºé—´
                 //float3x3 mulT2W = float3x3
                 //(
                 //float3(full.tangent.x, biTangent.x, full.normal.x),
@@ -213,32 +213,32 @@ Shader "MyShader/Texture_Diffuse2_ShadowLight"
             fixed4 frag (v2f data) : SV_Target
             {
                 fixed3 color;
-                //È¡³ö·¨ÏßÌùÍ¼µÄ·¨ÏßĞÅÏ¢
+                //å–å‡ºæ³•çº¿è´´å›¾çš„æ³•çº¿ä¿¡æ¯
                 float4 packNormal = tex2D(_BumpTex, data.uv.zw);
-                //ÓÉÓÚ·¨ÏßXYZ·ÖÁ¿·¶Î§ÔÚ[-1£¬1]Ö®¼ä¶øÏñËØRGB·ÖÁ¿·¶Î§ÔÚ[0£¬1]Ö®¼ä
+                //ç”±äºæ³•çº¿XYZåˆ†é‡èŒƒå›´åœ¨[-1ï¼Œ1]ä¹‹é—´è€Œåƒç´ RGBåˆ†é‡èŒƒå›´åœ¨[0ï¼Œ1]ä¹‹é—´
                 //normalTex = normalTex * 2 - 1;
-                //Ò²¿ÉÒÔÊ¹ÓÃUnpackNormal·½·¨¶Ô·¨ÏßĞÅÏ¢½øĞĞÄæÔËËãÒÔ¼°¿ÉÄÜµÄ½âÑ¹ 
+                //ä¹Ÿå¯ä»¥ä½¿ç”¨UnpackNormalæ–¹æ³•å¯¹æ³•çº¿ä¿¡æ¯è¿›è¡Œé€†è¿ç®—ä»¥åŠå¯èƒ½çš„è§£å‹ 
                 float3 tangentNormal = UnpackNormal(packNormal);
-                //³ËÒÔBumpScaleÓÃÓÚ¿ØÖÆ°¼Í¹³Ì¶È
+                //ä¹˜ä»¥BumpScaleç”¨äºæ§åˆ¶å‡¹å‡¸ç¨‹åº¦
                 tangentNormal.xy *= _BumpNum;
                 tangentNormal.z = sqrt(1.0 - saturate(dot(tangentNormal.xy, tangentNormal.xy)));
-                //ÊÀ½ç¿Õ¼äÌùÍ¼·¨Ïß
+                //ä¸–ç•Œç©ºé—´è´´å›¾æ³•çº¿
                 //fixed3 wTangentNormal = mul(data.mulT2W, tangentNormal);
                 float3 wTangentNormal = float3(dot(data.mulLine1.xyz, tangentNormal), dot(data.mulLine2.xyz, tangentNormal),  dot(data.mulLine3.xyz, tangentNormal));
-                //Ö÷ÌùÍ¼ÑÕÉ«ºÍÂş·´ÉäÑÕÉ«µş¼Óµş¼Ó
+                //ä¸»è´´å›¾é¢œè‰²å’Œæ¼«åå°„é¢œè‰²å åŠ å åŠ 
                 fixed3 albedo = tex2D(_MainTex, data.uv.xy) * _MainColor.rgb;
-                //ÊÀ½ç¿Õ¼ä×ø±ê
+                //ä¸–ç•Œç©ºé—´åæ ‡
                 //fixed3 wPos = data.wPos;
                 fixed3 wPos = fixed3(data.mulLine1.w, data.mulLine2.w, data.mulLine3.w);
-                //±ê×¼»¯ÊÀ½ç¿Õ¼ä¹âÔ´·½Ïò
+                //æ ‡å‡†åŒ–ä¸–ç•Œç©ºé—´å…‰æºæ–¹å‘
                 fixed3 dirLight = normalize(UnityWorldSpaceLightDir(wPos));
-                //±ê×¼»¯ÊÀ½ç¿Õ¼äÊÓ½Ç·½Ïò
+                //æ ‡å‡†åŒ–ä¸–ç•Œç©ºé—´è§†è§’æ–¹å‘
                 fixed3 dirView = normalize(UnityWorldSpaceViewDir(wPos));
-                //»ñÈ¡À¼²®ÌØÂş·´Éä¹âÕÕÑÕÉ«
+                //è·å–å…°ä¼¯ç‰¹æ¼«åå°„å…‰ç…§é¢œè‰²
                 fixed3 lambertColor = _LightColor0.rgb * albedo * max(0, dot(wTangentNormal, dirLight));
 
                 UNITY_LIGHT_ATTENUATION(atten, data , wPos);
-                //»ñÈ¡²¼ÁÖ·½¹âÕÕÄ£ĞÍ
+                //è·å–å¸ƒæ—æ–¹å…‰ç…§æ¨¡å‹
                 color = UNITY_LIGHTMODEL_AMBIENT.rgb * albedo + lambertColor * atten;
                 return fixed4(color, 1);
 

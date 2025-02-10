@@ -1,19 +1,19 @@
-Shader "MyShader/MovingLight"
+Shader "MyShader/Practice/MovingLight"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        //¹âµş¼ÓµÄÑÕÉ« Ä¬ÈÏÍ¼Æ¬Ê±°×É« ÎÒÃÇµş¼ÓÒ»¸ö×Ô¶¨ÒåÑÕÉ« ¿ÉÒÔ¸Ä±äËü
+        //å…‰å åŠ çš„é¢œè‰² é»˜è®¤å›¾ç‰‡æ—¶ç™½è‰² æˆ‘ä»¬å åŠ ä¸€ä¸ªè‡ªå®šä¹‰é¢œè‰² å¯ä»¥æ”¹å˜å®ƒ
         _Color("Color", Color) = (1,1,1,1)
-        //Á÷¹âÒÆ¶¯µÄËÙ¶È
+        //æµå…‰ç§»åŠ¨çš„é€Ÿåº¦
         _Speed("Speed", Range(1,10)) = 1
-        //Á÷¹âÒÆ¶¯µÄ·½Ïò
+        //æµå…‰ç§»åŠ¨çš„æ–¹å‘
         [KeywordEnum(X, Y)] _MoveDirection("MoveDirection", float) = 0
     }
     SubShader
     {
         Tags { "RenderType"="Transparent" "Queue"="Transparent" }
-        //Ö±½Óµş¼ÓÑÕÉ« ÈÃÆäĞ§¹û¸üÁÁ ¸üÓĞÁ÷¹âµÄ¸Ğ¾õ
+        //ç›´æ¥å åŠ é¢œè‰² è®©å…¶æ•ˆæœæ›´äº® æ›´æœ‰æµå…‰çš„æ„Ÿè§‰
         Blend One One 
         Cull Off
         Pass
@@ -54,7 +54,7 @@ Shader "MyShader/MovingLight"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                //¸ù¾İÊ±¼ä ½øĞĞUV×ø±êÆ«ÒÆ ÕâÑùx£¨u£©·½Ïò¾Í¿ÉÒÔ¿´µ½ÒÆ¶¯µÄĞ§¹ûÁË
+                //æ ¹æ®æ—¶é—´ è¿›è¡ŒUVåæ ‡åç§» è¿™æ ·xï¼ˆuï¼‰æ–¹å‘å°±å¯ä»¥çœ‹åˆ°ç§»åŠ¨çš„æ•ˆæœäº†
                 #if _MoveDirection_X
                    i.uv = float2(i.uv.x + _Time.x * _Speed, i.uv.y);
                 #else
