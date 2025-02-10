@@ -1,5 +1,5 @@
 //纹理深度实现边缘切割效果
-Shader "MyShader/EdgeDelectionWithDepthNormalsTexture"
+Shader "MyShader/PostEffect/EdgeDelectionWithDepthNormalsTexture"
 {
     Properties
     {

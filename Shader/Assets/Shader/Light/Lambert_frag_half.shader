@@ -1,5 +1,5 @@
-//°ëÀ¼²®ÌØ¹âÕÕÖğÆ¬Ôª¹âÕÕ
-Shader "MyShader/Lambert_frag_half"
+//åŠå…°ä¼¯ç‰¹å…‰ç…§é€ç‰‡å…ƒå…‰ç…§
+Shader "MyShader/Light/Lambert_frag_half"
 {
     Properties
     {

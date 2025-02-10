@@ -1,4 +1,4 @@
-Shader "MyShader/ShaderDynamicTexture"
+Shader "MyShader/DynamicTexture/ShaderDynamicTexture"
 {
     Properties
     {

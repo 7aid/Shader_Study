@@ -1,5 +1,5 @@
 //深度法线纹理
-Shader "MyShader/DepthNormalsTexture"
+Shader "MyShader/PostEffect/DepthNormalsTexture"
 {
     Properties
     {

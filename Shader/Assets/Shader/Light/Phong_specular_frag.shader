@@ -1,7 +1,7 @@
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
-//Phone¸ß¹â·´ÉäÖğÆ¬Ôª¹âÕÕ
-Shader "MyShader/Phong_specular_frag"
+//Phoneé«˜å…‰åå°„é€ç‰‡å…ƒå…‰ç…§
+Shader "MyShader/Light/Phong_specular_frag"
 {
     Properties
     {
@@ -24,11 +24,11 @@ Shader "MyShader/Phong_specular_frag"
             fixed _SpecularGloss;
             struct v2f
             {
-               //²Ã¼ô¿Õ¼äÏÂ¶¥µã
+               //è£å‰ªç©ºé—´ä¸‹é¡¶ç‚¹
                fixed4 pos:SV_POSITION;
-               //ÊÀ½ç¿Õ¼äÏÂ·¨Ïß
+               //ä¸–ç•Œç©ºé—´ä¸‹æ³•çº¿
                fixed3 normal:NORMAL;
-               //ÊÀ½ç¿Õ¼äÏÂ¶¥µã
+               //ä¸–ç•Œç©ºé—´ä¸‹é¡¶ç‚¹
                fixed3 worldPos:TEXCOORD;
             };
 
@@ -43,13 +43,13 @@ Shader "MyShader/Phong_specular_frag"
 
             fixed4 frag (v2f i) : SV_Target
             {
-               //±ê×¼ºó¹Û²ì·½ÏòÏòÁ¿
+               //æ ‡å‡†åè§‚å¯Ÿæ–¹å‘å‘é‡
                fixed3 dirCamera = normalize(_WorldSpaceCameraPos.xyz - i.worldPos);
-               //ÊÀ½ç¿Õ¼äÏÂ¹âµÄ·´ÉäÏòÁ¿
+               //ä¸–ç•Œç©ºé—´ä¸‹å…‰çš„åå°„å‘é‡
                fixed3 dirLight = normalize(_WorldSpaceLightPos0.xyz);
-               //±ê×¼ºóµÄ·´Éä·½Ïò
+               //æ ‡å‡†åçš„åå°„æ–¹å‘
                fixed3 dirEflect = normalize(reflect(-dirLight ,i.normal));
-               //¸ß¹â·´Éä¹âÕÕÑÕÉ« = ¹âÔ´µÄÑÕÉ« * ²ÄÖÊ¸ß¹â·´ÉäÑÕÉ« * max (0£¬±ê×¼»¯ºó¹Û²ì·½ÏòÏòÁ¿ ¡¤ ±ê×¼»¯ºóµÄ·´Éä·½Ïò) Ãİ
+               //é«˜å…‰åå°„å…‰ç…§é¢œè‰² = å…‰æºçš„é¢œè‰² * æè´¨é«˜å…‰åå°„é¢œè‰² * max (0ï¼Œæ ‡å‡†åŒ–åè§‚å¯Ÿæ–¹å‘å‘é‡ Â· æ ‡å‡†åŒ–åçš„åå°„æ–¹å‘) å¹‚
                fixed3 color = _SpecularColor.rgb * _LightColor0.rgb * pow( max( 0, dot( dirEflect,dirCamera)), _SpecularGloss);
                return fixed4(color, 1);
             }

@@ -1,5 +1,5 @@
 //运动模糊效果
-Shader "MyShader/MotionBlur"
+Shader "MyShader/PostEffect/MotionBlur"
 {
     Properties
     {

@@ -1,18 +1,18 @@
-Shader "MyShader/Bloom"
+Shader "MyShader/PostEffect/Bloom"
 {
     Properties
     {
         _MainTex ("MainTex", 2D) = "white" {}
-        //ÓÃÓÚ´æ´¢ÁÁ¶ÈÎÆÀíÄ£ºıºóµÄ½á¹û
+        //ç”¨äºå­˜å‚¨äº®åº¦çº¹ç†æ¨¡ç³Šåçš„ç»“æœ
         _Bloom("Bloom", 2D) = ""{}
-        //ÁÁ¶ÈãĞÖµ ¿ØÖÆÁÁ¶ÈÎÆÀíµÄÁÁ¶ÈÇøÓò
+        //äº®åº¦é˜ˆå€¼ æ§åˆ¶äº®åº¦çº¹ç†çš„äº®åº¦åŒºåŸŸ
         _LuminanceThreshold("LuminanceThreshold", float) = 0.5
-        //Ä£ºı°ë¾¶
+        //æ¨¡ç³ŠåŠå¾„
         _BlurSize("BlurSize", float) = 1
     }
     SubShader
     {
-       //¹«ÓÃPass
+       //å…¬ç”¨Pass
        CGINCLUDE
        #include "UnityCG.cginc"
 
@@ -30,7 +30,7 @@ Shader "MyShader/Bloom"
            float2 uv:TEXCOORD0;
        };
 
-       //¼ÆËãÑÕÉ«µÄÁÁ¶ÈÖµ£¨»Ò¶ÈÖµ£©
+       //è®¡ç®—é¢œè‰²çš„äº®åº¦å€¼ï¼ˆç°åº¦å€¼ï¼‰
        fixed luminance(fixed4 color)
        {
            return color.r * 0.2125 + color.g * 0.7154 + color.b * 0.0721;
@@ -43,7 +43,7 @@ Shader "MyShader/Bloom"
        Cull Off
        ZWrite Off
 
-       //ÌáÈ¡Pass
+       //æå–Pass
        Pass 
        {
            CGPROGRAM
@@ -61,22 +61,22 @@ Shader "MyShader/Bloom"
 
            fixed4 frag(v2f i):SV_Target
            {
-               //²ÉÑùÔ´ÎÆÀíÑÕÉ«
+               //é‡‡æ ·æºçº¹ç†é¢œè‰²
                fixed4 color = tex2D(_MainTex, i.uv);
-               //µÃµ½ÁÁ¶È¹±Ï×Öµ
+               //å¾—åˆ°äº®åº¦è´¡çŒ®å€¼
                fixed value = clamp(Luminance(color) - _LuminanceThreshold, 0 , 1);
-               //·µ»ØÑÕÉ«*ÁÁ¶È¹±Ï×Öµ
+               //è¿”å›é¢œè‰²*äº®åº¦è´¡çŒ®å€¼
                return color * value;
            }
 
            ENDCG
        }
 
-       //¸´ÓÃ¸ßË¹Ä£ºıPass
+       //å¤ç”¨é«˜æ–¯æ¨¡ç³ŠPass
        UsePass "MyShader/GaussianBlur/GAUSSIAN_BLUR_HORIZONTAL"
        UsePass "MyShader/GaussianBlur/GAUSSIAN_BLUR_VERTICAL"
 
-       //ÓÃÓÚºÏ³ÉµÄPass
+       //ç”¨äºåˆæˆçš„Pass
        Pass
        {
            CGPROGRAM
@@ -86,8 +86,8 @@ Shader "MyShader/Bloom"
            struct v2fBloom
            {
                float4 pos:SV_POSITION;
-               //xyÖ÷ÒªÓÃÓÚ¶ÔÖ÷ÎÆÀí½øĞĞ²ÉÑù
-               //zwÖ÷ÒªÓÃÓÚ¶ÔÁÁ¶ÈÄ£ºıºóµÄÎÆÀí½øĞĞ²ÉÑù
+               //xyä¸»è¦ç”¨äºå¯¹ä¸»çº¹ç†è¿›è¡Œé‡‡æ ·
+               //zwä¸»è¦ç”¨äºå¯¹äº®åº¦æ¨¡ç³Šåçš„çº¹ç†è¿›è¡Œé‡‡æ ·
                half4 uv:TEXCOORD0;
            };
 
@@ -95,12 +95,12 @@ Shader "MyShader/Bloom"
            {
                v2fBloom o;
                o.pos = UnityObjectToClipPos(v.vertex);
-               //ÁÁ¶ÈÎÆÀíºÍÖ÷ÎÆÀí Òª²ÉÑùÏàÍ¬µÄµØ·½½øĞĞÑÕÉ«µş¼Ó
+               //äº®åº¦çº¹ç†å’Œä¸»çº¹ç† è¦é‡‡æ ·ç›¸åŒçš„åœ°æ–¹è¿›è¡Œé¢œè‰²å åŠ 
                o.uv.xy = v.texcoord;
                o.uv.zw = v.texcoord;
-               //ÓÃºêÈ¥ÅĞ¶Ïuv×ø±êÊÇ·ñ±»·­×ª
+               //ç”¨å®å»åˆ¤æ–­uvåæ ‡æ˜¯å¦è¢«ç¿»è½¬
                #if UNITY_UV_STARTS_AT_TOP
-               //Èç¹ûÎÆËØµÄyĞ¡ÓÚ0 Îª¸ºÊı ±íÊ¾ĞèÒª¶ÔYÖá½øĞĞµ÷Õû
+               //å¦‚æœçº¹ç´ çš„yå°äº0 ä¸ºè´Ÿæ•° è¡¨ç¤ºéœ€è¦å¯¹Yè½´è¿›è¡Œè°ƒæ•´
                if(_MainTex_TexelSize.y < 0)
                    o.uv.w = 1 - o.uv.w;
                #endif

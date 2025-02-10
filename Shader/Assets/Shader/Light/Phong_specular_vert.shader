@@ -1,7 +1,7 @@
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
-//Phone¸ß¹â·´ÉäÖğ¶¥µã¹âÕÕ
-Shader "MyShader/Phong_specular_vert"
+//Phoneé«˜å…‰åå°„é€é¡¶ç‚¹å…‰ç…§
+Shader "MyShader/Light/Phong_specular_vert"
 {
     Properties
     {
@@ -33,15 +33,15 @@ Shader "MyShader/Phong_specular_vert"
                v2f data;              
                data.pos = UnityObjectToClipPos(dataBase.vertex);
                fixed3 worldPos = mul(unity_ObjectToWorld, dataBase.vertex).xyz;
-               //±ê×¼ºó¹Û²ì·½ÏòÏòÁ¿
+               //æ ‡å‡†åè§‚å¯Ÿæ–¹å‘å‘é‡
                fixed3 dirCamera = normalize(_WorldSpaceCameraPos.xyz - worldPos);
-               //ÊÀ½ç¿Õ¼äÏÂ¹âµÄ·´ÉäÏòÁ¿
+               //ä¸–ç•Œç©ºé—´ä¸‹å…‰çš„åå°„å‘é‡
                fixed3 dirLight = normalize(_WorldSpaceLightPos0.xyz);
-               //ÊÀ½ç¿Õ¼ä·¨ÏßÏòÁ¿
+               //ä¸–ç•Œç©ºé—´æ³•çº¿å‘é‡
                fixed3 worldNormal = UnityObjectToWorldNormal(dataBase.normal);
-               //±ê×¼ºóµÄ·´Éä·½Ïò
+               //æ ‡å‡†åçš„åå°„æ–¹å‘
                fixed3 dirEflect = normalize(reflect(-dirLight ,worldNormal));
-               //¸ß¹â·´Éä¹âÕÕÑÕÉ« = ¹âÔ´µÄÑÕÉ« * ²ÄÖÊ¸ß¹â·´ÉäÑÕÉ« * max (0£¬±ê×¼»¯ºó¹Û²ì·½ÏòÏòÁ¿ ¡¤ ±ê×¼»¯ºóµÄ·´Éä·½Ïò) Ãİ
+               //é«˜å…‰åå°„å…‰ç…§é¢œè‰² = å…‰æºçš„é¢œè‰² * æè´¨é«˜å…‰åå°„é¢œè‰² * max (0ï¼Œæ ‡å‡†åŒ–åè§‚å¯Ÿæ–¹å‘å‘é‡ Â· æ ‡å‡†åŒ–åçš„åå°„æ–¹å‘) å¹‚
                data.color = _SpecularColor * _LightColor0 * ( pow( max( 0, dot( dirEflect,dirCamera)), _SpecularGloss));
                return data;
             }

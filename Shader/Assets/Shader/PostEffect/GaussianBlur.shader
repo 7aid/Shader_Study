@@ -1,5 +1,5 @@
 //高斯模糊效果
-Shader "MyShader/GaussianBlur"
+Shader "MyShader/PostEffect/GaussianBlur"
 {
     Properties
     {

@@ -1,15 +1,15 @@
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
-//Blinn_PhoneÊ½ÖğÆ¬Ôª¹âÕÕ
-Shader "MyShader/Blinn_Phong_frag"
+//Blinn_Phoneå¼é€ç‰‡å…ƒå…‰ç…§
+Shader "MyShader/Light/Blinn_Phong_frag"
 {
     Properties
     {
-        //²ÄÖÊÂş·´ÉäÑÕÉ«
+        //æè´¨æ¼«åå°„é¢œè‰²
         _MainColor("_MainColor", Color) = (1,1,1,1)
-        //¸ß¹â·´ÉäÑÕÉ«
+        //é«˜å…‰åå°„é¢œè‰²
         _SpecularColor("_SpecularColor", Color) = (1,1,1,1)
-        //¹âÔó¶È
+        //å…‰æ³½åº¦
         _SpecularGloss("_SpecularGloss",Range(0, 10)) = 0.5
     }
     SubShader
@@ -29,14 +29,14 @@ Shader "MyShader/Blinn_Phong_frag"
             fixed _SpecularGloss;
             struct v2f
             {
-               //ÊÀ½ç¿Õ¼ä·¨Ïß
+               //ä¸–ç•Œç©ºé—´æ³•çº¿
                fixed3 wnormal:NORMAL;
-               //²Ã¼ô¿Õ¼ä¶¥µã
+               //è£å‰ªç©ºé—´é¡¶ç‚¹
                fixed4 pos:SV_POSITION;
-               //ÊÀ½ç¿Õ¼ä¶¥µã
+               //ä¸–ç•Œç©ºé—´é¡¶ç‚¹
                fixed3 wpos:TEXCOORD;
             };
-            //»ñÈ¡À¼²®ÌØÂş·´ÉäÑÕÉ«
+            //è·å–å…°ä¼¯ç‰¹æ¼«åå°„é¢œè‰²
             fixed3 getLambertColor(fixed3 wnormal)
             {
                 fixed3 color;     
@@ -44,13 +44,13 @@ Shader "MyShader/Blinn_Phong_frag"
                 color = _LightColor0.rgb * _MainColor.rgb * max(0, dot(wnormal, dirLight));
                 return color;
             }
-            //»ñÈ¡Phone¸ß¹â·´ÉäÑÕÉ«
+            //è·å–Phoneé«˜å…‰åå°„é¢œè‰²
             fixed3 getBlinnPhoneSpecularColor(fixed3 wnormal, fixed3 wpos)
             {           
                fixed3 color; 
-               //¶Ô½ÇÏòÁ¿
+               //å¯¹è§’å‘é‡
                fixed3 dirHalf = normalize(_WorldSpaceLightPos0) + normalize(_WorldSpaceCameraPos - wpos);
-               //±ê×¼»¯¶Ô½ÇÏòÁ¿
+               //æ ‡å‡†åŒ–å¯¹è§’å‘é‡
                fixed3 dirHalfNormalize = normalize(dirHalf);
                color = _LightColor0.rgb * _SpecularColor.rgb * ( pow( max( 0, dot( dirHalfNormalize, wnormal)), _SpecularGloss));
                return color;

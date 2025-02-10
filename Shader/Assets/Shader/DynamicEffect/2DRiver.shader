@@ -1,5 +1,5 @@
 //2D河流（带阴影的）
-Shader "MyShader/2DRiver"
+Shader "MyShader/DynamicEffect/2DRiver"
 {
     Properties
     {

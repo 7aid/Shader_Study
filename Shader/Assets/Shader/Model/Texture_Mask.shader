@@ -1,24 +1,24 @@
-//ÕÚÕÖÎÆÀí  ·¨ÏßÎÆÀí Ö÷ÌûÍ¼ÎÆÀí  ²¼ÁÖ·½
-Shader "MyShader/Texture_Mask"
+//é®ç½©çº¹ç†  æ³•çº¿çº¹ç† ä¸»å¸–å›¾çº¹ç†  å¸ƒæ—æ–¹
+Shader "MyShader/Model/Texture_Mask"
 {
     
     Properties
     {
-        //Ö÷²ÄÖÊÑÕÉ«
+        //ä¸»æè´¨é¢œè‰²
         _MainColor("MainColor", Color) = (1,1,1,1)
-        //¸ß¹â·´ÉäÑÕÉ«
+        //é«˜å…‰åå°„é¢œè‰²
         _SpecularColor("_SpecularColor", Color) = (1,1,1,1)
-        //¹âÔó¶È
+        //å…‰æ³½åº¦
         _SpecularGloss("_SpecularGloss",Range(8, 255)) = 15
-        //Ö÷ÌùÍ¼ÎÆÀí
+        //ä¸»è´´å›¾çº¹ç†
         _MainTex("MainTex", 2D) = ""{}
-        //·¨ÏßÎÆÀí
+        //æ³•çº¿çº¹ç†
         _BumpTex("BumpTex", 2D) = ""{}
-        //°¼Í¹³Ì¶È
+        //å‡¹å‡¸ç¨‹åº¦
         _BumpScale("BumpScale", Range(0, 2)) = 1
-        //ÕÚÕÖÎÆÀí
+        //é®ç½©çº¹ç†
         _MaskTex("MaskTex", 2D) = ""{}
-        //ÕÚÕÖÏµÊı
+        //é®ç½©ç³»æ•°
         _MaskNum("MaskNum", Float) = 1
     }
     SubShader
@@ -48,7 +48,7 @@ Shader "MyShader/Texture_Mask"
 
             struct v2f
             {
-               //²Ã¼ô¿Õ¼ä¶¥µã
+               //è£å‰ªç©ºé—´é¡¶ç‚¹
                fixed4 pos:SV_POSITION;  
                fixed3 tDirLight:TEXCOORD0;
                fixed3 tDirView:TEXCOORD1;
@@ -60,12 +60,12 @@ Shader "MyShader/Texture_Mask"
             {
                v2f data;
                data.pos = UnityObjectToClipPos(full.vertex);
-               //Ö÷ÌûÍ¼ÎÆÀí
+               //ä¸»å¸–å›¾çº¹ç†
                data.uv.xy = full.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-               //·¨ÏßÌùÍ¼ÎÆÀí
+               //æ³•çº¿è´´å›¾çº¹ç†
                data.uv.zw = full.texcoord.xy * _BumpTex_ST.xy + _BumpTex_ST.zw;
                fixed3 biTangent = cross(normalize(full.tangent), normalize(full.normal)) * full.tangent.w;
-               //ÊÀ½ç¿Õ¼ä-ÇĞÏß¿Õ¼ä¾ØÕó
+               //ä¸–ç•Œç©ºé—´-åˆ‡çº¿ç©ºé—´çŸ©é˜µ
                float3x3 mulW2T = float3x3(
                full.tangent.xyz,
                biTangent,
@@ -78,19 +78,19 @@ Shader "MyShader/Texture_Mask"
 
             fixed4 frag (v2f i) : SV_Target
             {
-               //·¨Ïß
+               //æ³•çº¿
                fixed4 normalPack = tex2D(_BumpTex, i.uv.zw);
 
                fixed3 tNormal = UnpackNormal(normalPack); 
                tNormal.xy *= _BumpScale;
                tNormal.z = sqrt(1.0 - saturate(dot(tNormal.xy, tNormal.xy)));
-               //Ö÷²ÄÖÊÑÕÉ«ÓëÖ÷²ÄÖÊÎÆÀíÑÕÉ«µş¼Ó
+               //ä¸»æè´¨é¢œè‰²ä¸ä¸»æè´¨çº¹ç†é¢œè‰²å åŠ 
                fixed3 albedo = tex2D(_MainTex, i.uv.xy) * _MainColor.rgb;
-               //À¼²®ÌØÂş·´Éä
+               //å…°ä¼¯ç‰¹æ¼«åå°„
                fixed3 lambertColor = _LightColor0.rgb * albedo * max(0, dot(normalize(i.tDirLight),normalize(tNormal)));
-               //ÕÚÕÖÖµ = ÕÚÕÖÑÚÂëÖµ * ÕÚÕÖÏµÊı
+               //é®ç½©å€¼ = é®ç½©æ©ç å€¼ * é®ç½©ç³»æ•°
                fixed maskValue = tex2D(_MaskTex, i.uv.xy).r * _MaskNum;
-               //¸ß¹â·´Éä
+               //é«˜å…‰åå°„
                fixed3 dirHalf = normalize(i.tDirView) + normalize(i.tDirLight);
                fixed3 specularColor = _LightColor0.rgb * _SpecularColor.rgb * pow(max(0, dot(normalize(dirHalf), normalize(tNormal))), _SpecularGloss) * maskValue;
                fixed3 color = UNITY_LIGHTMODEL_AMBIENT.rgb * albedo + specularColor + lambertColor;

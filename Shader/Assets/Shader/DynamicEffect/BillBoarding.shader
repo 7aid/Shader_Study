@@ -1,5 +1,5 @@
 //全息/垂直广告牌
-Shader "MyShader/BillBoarding"
+Shader "MyShader/DynamicEffect/BillBoarding"
 {
     Properties
     {

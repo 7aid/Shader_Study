@@ -1,5 +1,5 @@
 //滚动背景
-Shader "MyShader/ScrollingBackground"
+Shader "MyShader/DynamicEffect/ScrollingBackground"
 {
     Properties
     {

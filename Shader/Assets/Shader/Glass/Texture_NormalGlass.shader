@@ -1,28 +1,28 @@
-//»ù±¾²£Á§ÊµÏÖ´ø·¨Ïß
-Shader "MyShader/Texture_NormalGlass"
+//åŸºæœ¬ç»ç’ƒå®ç°å¸¦æ³•çº¿
+Shader "MyShader/Glass/Texture_NormalGlass"
 {
      Properties
     {
-        //ÎÆÀí
+        //çº¹ç†
         _MainTex("MainTex", 2D) = ""{}
-         //·¨ÏßÎÆÀí
+         //æ³•çº¿çº¹ç†
         _BumpTex("BumpTex", 2D) = ""{}
-        //Á¢·½ÌåÎÆÀí
+        //ç«‹æ–¹ä½“çº¹ç†
         _CubeMap("CubeMap", Cube) = ""{}
-        //ÕÛÉä³Ì¶È(0±íÊ¾ÍêÈ«²»ÕÛÉä-Ïàµ±ÓÚÍêÈ«·´Éä£¬1±íÊ¾ÍêÈ«ÕÛÉä-Ïàµ±ÓÚÍêÈ«Í¸Ã÷)
+        //æŠ˜å°„ç¨‹åº¦(0è¡¨ç¤ºå®Œå…¨ä¸æŠ˜å°„-ç›¸å½“äºå®Œå…¨åå°„ï¼Œ1è¡¨ç¤ºå®Œå…¨æŠ˜å°„-ç›¸å½“äºå®Œå…¨é€æ˜)
         _RefractAmount("RefractAmount", Range(0, 1)) = 1   
-        //¿ØÖÆÕÛÉäÅ¤ÇúµÄ±äÁ¿
+        //æ§åˆ¶æŠ˜å°„æ‰­æ›²çš„å˜é‡
         _Distortion("Distortion", Range(0,10)) = 0
     }
     SubShader
-    {   //ĞŞ¸ÄäÖÈ¾¶ÓÁĞÎªTransparent£¬µ«ÊÇRenderTypeäÖÈ¾ÀàĞÍ²»ĞŞ¸Ä£¬ÒòÎªËü±¾ÖÊÉÏ»¹ÊÇÒ»¸ö²»Í¸Ã÷ÎïÌå
-        //ÒÔºóÊ¹ÓÃ×ÅÉ«Æ÷Ìæ»»¹¦ÄÜÊ±£¬¿ÉÒÔÔÚ±»Õı³£äÖÈ¾
+    {   //ä¿®æ”¹æ¸²æŸ“é˜Ÿåˆ—ä¸ºTransparentï¼Œä½†æ˜¯RenderTypeæ¸²æŸ“ç±»å‹ä¸ä¿®æ”¹ï¼Œå› ä¸ºå®ƒæœ¬è´¨ä¸Šè¿˜æ˜¯ä¸€ä¸ªä¸é€æ˜ç‰©ä½“
+        //ä»¥åä½¿ç”¨ç€è‰²å™¨æ›¿æ¢åŠŸèƒ½æ—¶ï¼Œå¯ä»¥åœ¨è¢«æ­£å¸¸æ¸²æŸ“
         Tags{"RenderType" = "Opaque"  "Queue" = "Transparent"}
-        //×¥È¡ÆÁÄ»Í¼Ïñ´æ´¢äÖÈ¾ÎÆÀí
+        //æŠ“å–å±å¹•å›¾åƒå­˜å‚¨æ¸²æŸ“çº¹ç†
         GrabPass{}
         Pass
         {
-            //ÉèÖÃ¹âäÖÈ¾·½Ê½£¬²»Í¸Ã÷ÎïÌåÏòÇ°äÖÈ¾
+            //è®¾ç½®å…‰æ¸²æŸ“æ–¹å¼ï¼Œä¸é€æ˜ç‰©ä½“å‘å‰æ¸²æŸ“
             Tags{"LightMode" = "ForwardBase"}
             CGPROGRAM
             #pragma vertex vert
@@ -31,27 +31,27 @@ Shader "MyShader/Texture_NormalGlass"
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
 
-            //Ö÷²ÄÖÊ
+            //ä¸»æè´¨
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            //·¨Ïß²ÄÖÊ
+            //æ³•çº¿æè´¨
             sampler2D _BumpTex;
             float4 _BumpTex_ST;
-            //Ó³ÉäÆÁÄ»Í¼Ïñ´æ´¢äÖÈ¾ÎÆÀí
+            //æ˜ å°„å±å¹•å›¾åƒå­˜å‚¨æ¸²æŸ“çº¹ç†
             sampler2D _GrabTexture;
-            //Á¢·½ÌåÎÆÀí
+            //ç«‹æ–¹ä½“çº¹ç†
             samplerCUBE _CubeMap;
             float _RefractAmount;
-            //¿ØÖÆÕÛÉäÅ¤ÇúµÄ±äÁ¿
+            //æ§åˆ¶æŠ˜å°„æ‰­æ›²çš„å˜é‡
             float _Distortion;
             struct v2f
             {
                 float4 pos:SV_POSITION;
-                //Ò²¿ÉÒÔÖ±½ÓÉùÃ÷Ò»¸öfloat4µÄ³ÉÔ± xyÓÃÓÚ¼ÇÂ¼ÑÕÉ«ÎÆÀíµÄuv£¬zwÓÃÓÚ¼ÇÂ¼·¨ÏßÎÆÀíµÄuv
+                //ä¹Ÿå¯ä»¥ç›´æ¥å£°æ˜ä¸€ä¸ªfloat4çš„æˆå‘˜ xyç”¨äºè®°å½•é¢œè‰²çº¹ç†çš„uvï¼Œzwç”¨äºè®°å½•æ³•çº¿çº¹ç†çš„uv
                 float4 uv:TEXCOORD0;
-                //×¥È¡ÆÁÄ»×ø±ê
+                //æŠ“å–å±å¹•åæ ‡
                 float4 grabPos:TEXCOORD1;
-                //ÇĞÏß¿Õ¼äµ½ÊÀ½ç¿Õ¼äµÄ¾ØÕó
+                //åˆ‡çº¿ç©ºé—´åˆ°ä¸–ç•Œç©ºé—´çš„çŸ©é˜µ
                 float4 mulLine1:TEXCOORD2;
                 float4 mulLine2:TEXCOORD3;
                 float4 mulLine3:TEXCOORD4;
@@ -60,24 +60,24 @@ Shader "MyShader/Texture_NormalGlass"
             v2f vert (appdata_full v)
             {
                 v2f data;
-                //¶¥µã×ø±ê×ª»»
+                //é¡¶ç‚¹åæ ‡è½¬æ¢
                 data.pos = UnityObjectToClipPos(v.vertex);
-                //ÆÁÄ»×ø±ê×ª»»Ïà¹ØµÄÄÚÈİ
+                //å±å¹•åæ ‡è½¬æ¢ç›¸å…³çš„å†…å®¹
                 data.grabPos = ComputeGrabScreenPos(data.pos);
-                //uv×ø±ê¼ÆËãÏà¹ØµÄÄÚÈİ
+                //uvåæ ‡è®¡ç®—ç›¸å…³çš„å†…å®¹
                 data.uv.xy = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw; 
-                //·¨ÏßÌùÍ¼uv×ø±ê
+                //æ³•çº¿è´´å›¾uvåæ ‡
                 data.uv.zw = v.texcoord.xy * _BumpTex_ST.xy + _BumpTex_ST.zw;
-                //¼ÆËã·´Éä¹âÏòÁ¿
-                //1.¼ÆËãÊÀ½ç¿Õ¼äÏÂ·¨ÏßÏòÁ¿
+                //è®¡ç®—åå°„å…‰å‘é‡
+                //1.è®¡ç®—ä¸–ç•Œç©ºé—´ä¸‹æ³•çº¿å‘é‡
                 fixed3 wNormal = UnityObjectToWorldNormal(v.normal);
-                //2.¼ÆËãÊÀ½ç¿Õ¼äÏÂÇĞÏßÏòÁ¿
+                //2.è®¡ç®—ä¸–ç•Œç©ºé—´ä¸‹åˆ‡çº¿å‘é‡
                 fixed3 wTangent = UnityObjectToWorldDir(v.tangent.xyz);
-                //3.¼ÆËãÊÀ½ç¿Õ¼äÏÂ¸±ÇĞÏß
+                //3.è®¡ç®—ä¸–ç•Œç©ºé—´ä¸‹å‰¯åˆ‡çº¿
                 fixed3 wbiTangent = cross(normalize(wTangent), normalize(wNormal)) * v.tangent.w;
-                //4.¼ÆËãÊÀ½ç¿Õ¼äÏÂ×ø±ê
+                //4.è®¡ç®—ä¸–ç•Œç©ºé—´ä¸‹åæ ‡
                 fixed3 wpos = mul(unity_ObjectToWorld, v.vertex);
-                //»ñµÃÇĞÏß¿Õ¼äµ½ÊÀ½ç¿Õ¼äµÄ¾ØÕó
+                //è·å¾—åˆ‡çº¿ç©ºé—´åˆ°ä¸–ç•Œç©ºé—´çš„çŸ©é˜µ
                 data.mulLine1 = fixed4(wTangent.x, wbiTangent.x, wNormal.x, wpos.x);
                 data.mulLine2 = fixed4(wTangent.y, wbiTangent.y, wNormal.y, wpos.y);
                 data.mulLine3 = fixed4(wTangent.z, wbiTangent.z, wNormal.z, wpos.z);
@@ -86,37 +86,37 @@ Shader "MyShader/Texture_NormalGlass"
 
             fixed4 frag (v2f i):SV_Target
             {
-               //»ñÈ¡ÊÀ½ç¿Õ¼äÏÂÊÓ½Ç·½Ïò
+               //è·å–ä¸–ç•Œç©ºé—´ä¸‹è§†è§’æ–¹å‘
                fixed3 wpos = fixed3(i.mulLine1.z, i.mulLine2.z, i.mulLine3.z);
                fixed3 wViewDir = normalize(UnityWorldSpaceViewDir(wpos));
-               //»ñÈ¡·¨Ïß²ÄÖÊÑÕÉ«
+               //è·å–æ³•çº¿æè´¨é¢œè‰²
                fixed4 packNormal = tex2D(_BumpTex, i.uv.zw);
-               //ÓÉÓÚ·¨ÏßXYZ·ÖÁ¿·¶Î§ÔÚ[-1£¬1]Ö®¼ä¶øÏñËØRGB·ÖÁ¿·¶Î§ÔÚ[0£¬1]Ö®¼ä
+               //ç”±äºæ³•çº¿XYZåˆ†é‡èŒƒå›´åœ¨[-1ï¼Œ1]ä¹‹é—´è€Œåƒç´ RGBåˆ†é‡èŒƒå›´åœ¨[0ï¼Œ1]ä¹‹é—´
                //normalTex = normalTex * 2 - 1;
-               //Ò²¿ÉÒÔÊ¹ÓÃUnpackNormal·½·¨¶Ô·¨ÏßĞÅÏ¢½øĞĞÄæÔËËãÒÔ¼°¿ÉÄÜµÄ½âÑ¹ 
+               //ä¹Ÿå¯ä»¥ä½¿ç”¨UnpackNormalæ–¹æ³•å¯¹æ³•çº¿ä¿¡æ¯è¿›è¡Œé€†è¿ç®—ä»¥åŠå¯èƒ½çš„è§£å‹ 
                fixed3 tangentNormal = UnpackNormal(packNormal);
-               //»ñÈ¡ÇĞÏß¿Õ¼äµÄ·¨Ïß×ª»»µ½ÊÀ½ç¿Õ¼äÏÂ(½øĞĞ¾ØÕó±ä»»)
+               //è·å–åˆ‡çº¿ç©ºé—´çš„æ³•çº¿è½¬æ¢åˆ°ä¸–ç•Œç©ºé—´ä¸‹(è¿›è¡ŒçŸ©é˜µå˜æ¢)
                fixed3 wNormal = float3(dot(i.mulLine1.xyz, tangentNormal), dot(i.mulLine2.xyz, tangentNormal), dot(i.mulLine3.xyz, tangentNormal));
-               //»ñÈ¡Ïà¶ÔÓÚ·¨ÏßµÄ·´ÉäÏòÁ¿
+               //è·å–ç›¸å¯¹äºæ³•çº¿çš„åå°„å‘é‡
                fixed3 wRefl = reflect(-wViewDir, wNormal);
-               //ÕÛÉäÏà¹ØµÄÑÕÉ«
-               //ÆäÊµ¾ÍÊÇ´ÓÎÒÃÇ×¥È¡µÄ ÆÁÄ»äÖÈ¾ÎÆÀíÖĞ½øĞĞ²ÉÑù ²ÎÓë¼ÆËã
-               //×¥È¡ÎÆÀíÖĞµÄÑÕÉ«ĞÅÏ¢ Ïàµ±ÓÚÊÇÕâ¸ö²£Á§¶ÔÏóºóÃæµÄÑÕÉ«              
-               //ÏëÒªÓĞÕÛÉäĞ§¹û ¿ÉÒÔÔÚ²ÉÑùÖ®Ç° ½øĞĞxyÆÁÄ»×ø±êµÄÆ«ÒÆ
+               //æŠ˜å°„ç›¸å…³çš„é¢œè‰²
+               //å…¶å®å°±æ˜¯ä»æˆ‘ä»¬æŠ“å–çš„ å±å¹•æ¸²æŸ“çº¹ç†ä¸­è¿›è¡Œé‡‡æ · å‚ä¸è®¡ç®—
+               //æŠ“å–çº¹ç†ä¸­çš„é¢œè‰²ä¿¡æ¯ ç›¸å½“äºæ˜¯è¿™ä¸ªç»ç’ƒå¯¹è±¡åé¢çš„é¢œè‰²              
+               //æƒ³è¦æœ‰æŠ˜å°„æ•ˆæœ å¯ä»¥åœ¨é‡‡æ ·ä¹‹å‰ è¿›è¡Œxyå±å¹•åæ ‡çš„åç§»
                float2 offset = tangentNormal.xy * _Distortion;
-               //xyÆ«ÒÆÒ»¸öÎ»ÖÃ
+               //xyåç§»ä¸€ä¸ªä½ç½®
                i.grabPos.xy = offset * i.grabPos.z + i.grabPos.xy;              
-               //ÀûÓÃÍ¸ÊÓ³ı·¨ ½«ÆÁÄ»×ø±ê×ª»»µ½ 0~1·¶Î§ÄÚ È»ºóÔÙ½øĞĞ²ÉÑù
+               //åˆ©ç”¨é€è§†é™¤æ³• å°†å±å¹•åæ ‡è½¬æ¢åˆ° 0~1èŒƒå›´å†… ç„¶åå†è¿›è¡Œé‡‡æ ·
                fixed2 screenUV = i.grabPos.xy / i.grabPos.w;
-               //´Ó²¶»ñµÄäÖÈ¾ÎÆÀíÖĞ½øĞĞ²ÉÑù »ñÈ¡ºóÃæµÄÑÕÉ«
+               //ä»æ•è·çš„æ¸²æŸ“çº¹ç†ä¸­è¿›è¡Œé‡‡æ · è·å–åé¢çš„é¢œè‰²
                fixed4 grabColor = tex2D(_GrabTexture, screenUV);
 
-               //ÔÚ´Ë´¦´«ÈëµÄuvÊÇ¾­¹ı²åÖµÔËËãºóµÄ Ã¿Ò»¸öÆ¬Ôª¶¼ÓĞ×Ô¼ºµÄÒ»¸öuv×ø±ê
-               //ÕâÑù²Å»á¾«×¼µÄÔÚÌùÍ¼µ±ÖĞÈ¡³öÑÕÉ«
+               //åœ¨æ­¤å¤„ä¼ å…¥çš„uvæ˜¯ç»è¿‡æ’å€¼è¿ç®—åçš„ æ¯ä¸€ä¸ªç‰‡å…ƒéƒ½æœ‰è‡ªå·±çš„ä¸€ä¸ªuvåæ ‡
+               //è¿™æ ·æ‰ä¼šç²¾å‡†çš„åœ¨è´´å›¾å½“ä¸­å–å‡ºé¢œè‰²
                fixed4 mainColor = tex2D(_MainTex, i.uv.xy);
-               //½«·´ÉäÑÕÉ«ºÍÖ÷ÎÆÀíÑÕÉ«½øĞĞµş¼Ó
+               //å°†åå°„é¢œè‰²å’Œä¸»çº¹ç†é¢œè‰²è¿›è¡Œå åŠ 
                fixed4 reflColor = texCUBE(_CubeMap, wRefl) * mainColor;
-               //ÕÛÉä³Ì¶È 0~1 0´ú±íÍêÈ«·´Éä£¨ÍêÈ«²»ÕÛÉä£©1´ú±íÍêÈ«ÕÛÉä£¨Í¸Ã÷Ğ§¹û Ïàµ±ÓÚ¹âÈ«²¿½øÈëÁËÄÚ²¿£©
+               //æŠ˜å°„ç¨‹åº¦ 0~1 0ä»£è¡¨å®Œå…¨åå°„ï¼ˆå®Œå…¨ä¸æŠ˜å°„ï¼‰1ä»£è¡¨å®Œå…¨æŠ˜å°„ï¼ˆé€æ˜æ•ˆæœ ç›¸å½“äºå…‰å…¨éƒ¨è¿›å…¥äº†å†…éƒ¨ï¼‰
                fixed4 color = reflColor * (1 - _RefractAmount) + grabColor * _RefractAmount;
 
                return color;

@@ -1,33 +1,33 @@
-//ÊµÏÖÍ¸Ã÷¶È»ìºÏ   Éî¶ÈĞ´Èë
-Shader "MyShader/Texture_AlphaTransparentOn"
+//å®ç°é€æ˜åº¦æ··åˆ   æ·±åº¦å†™å…¥
+Shader "MyShader/Model/Texture_AlphaTransparentOn"
 {
     Properties
-    {   //²ÄÖÊÂş·´ÉäÑÕÉ«
+    {   //æè´¨æ¼«åå°„é¢œè‰²
         _MainColor("MainColor",Color) = (1,1,1,1)
-        //µ¥ÕÅÎÆÀíĞÅÏ¢
+        //å•å¼ çº¹ç†ä¿¡æ¯
         _MainTex ("MainTex", 2D) = ""{}
-        //¸ß¹â·´ÉäÑÕÉ«
+        //é«˜å…‰åå°„é¢œè‰²
         _SpecularColor("SpecularColor", Color) = (1,1,1,1)
-        //¹âÔó¶È
+        //å…‰æ³½åº¦
         _SpecularNum("SpecularNum", Range(0,20)) = 15
-         //Í¸Ã÷¶È´óĞ¡¿ØÖÆ
+         //é€æ˜åº¦å¤§å°æ§åˆ¶
         _AlphaScale("AlphaScale", Range(0,1)) = 1
     }
     SubShader
     {
-         //ÉèÖÃäÖÈ¾¶ÓÁĞË³Ğò  ÉèÖÃÍ¶ºöÂÔÍ¶Ó°Æ÷£¨°ëÍ¸Ã÷Ğ§¹ûĞèÒªÉèÖÃ£©   ÉèÖÃäÖÈ¾ÀàĞÍ±êÇ©ÖµÎªÍ¸Ã÷ÇĞ¸î
+         //è®¾ç½®æ¸²æŸ“é˜Ÿåˆ—é¡ºåº  è®¾ç½®æŠ•å¿½ç•¥æŠ•å½±å™¨ï¼ˆåŠé€æ˜æ•ˆæœéœ€è¦è®¾ç½®ï¼‰   è®¾ç½®æ¸²æŸ“ç±»å‹æ ‡ç­¾å€¼ä¸ºé€æ˜åˆ‡å‰²
         Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
         Pass
         {
             
             Tags {"LightMode" = "ForwardBase"}
-            //¹Ø±ÕÉî¶ÈĞ´Èë
+            //å…³é—­æ·±åº¦å†™å…¥
             //ZWrite Off
-            //Éî¶ÈĞ´Èë
+            //æ·±åº¦å†™å…¥
             ZWrite On
-            //ÉèÖÃ»ìºÏµÄ¼ÆËã·½Ê½
+            //è®¾ç½®æ··åˆçš„è®¡ç®—æ–¹å¼
             //BlendOp Add
-            //»ìºÏ·½Ê½µÄ»ù±¾¸ñÊ½
+            //æ··åˆæ–¹å¼çš„åŸºæœ¬æ ¼å¼
             Blend SrcAlpha OneMinusSrcAlpha
 
             CGPROGRAM
@@ -39,38 +39,38 @@ Shader "MyShader/Texture_AlphaTransparentOn"
 
             struct v2f
             {
-                //²Ã¼ô¿Õ¼ä×ø±ê
+                //è£å‰ªç©ºé—´åæ ‡
                 float4 pos:SV_POSITION;
                 //float2 uvTex:TEXCOORD0;
                 //float2 uvBump:TEXCOORD1;
-                //ÎÒÃÇ¿ÉÒÔµ¥¶ÀµÄÉùÃ÷Á½¸öfloat2µÄ³ÉÔ±ÓÃÓÚ¼ÇÂ¼ ÑÕÉ«ºÍ·¨ÏßÎÆÀíµÄuv×ø±ê
-                //Ò²¿ÉÒÔÖ±½ÓÉùÃ÷Ò»¸öfloat4µÄ³ÉÔ± xyÓÃÓÚ¼ÇÂ¼ÑÕÉ«ÎÆÀíµÄuv£¬zwÓÃÓÚ¼ÇÂ¼·¨ÏßÎÆÀíµÄuv
+                //æˆ‘ä»¬å¯ä»¥å•ç‹¬çš„å£°æ˜ä¸¤ä¸ªfloat2çš„æˆå‘˜ç”¨äºè®°å½• é¢œè‰²å’Œæ³•çº¿çº¹ç†çš„uvåæ ‡
+                //ä¹Ÿå¯ä»¥ç›´æ¥å£°æ˜ä¸€ä¸ªfloat4çš„æˆå‘˜ xyç”¨äºè®°å½•é¢œè‰²çº¹ç†çš„uvï¼Œzwç”¨äºè®°å½•æ³•çº¿çº¹ç†çš„uv
                 float4 uv:TEXCOORD0;
-                //ÊÀ½ç¿Õ¼ä·¨Ïß 
+                //ä¸–ç•Œç©ºé—´æ³•çº¿ 
                 fixed3 normal:NORMAL;
-                //ÊÀ½ç¿Õ¼ä¹âÏß
+                //ä¸–ç•Œç©ºé—´å…‰çº¿
                 fixed3 dirLight:TEXCOORD1;
-                //ÊÀ½ç¿Õ¼äÊÓ½Ç
+                //ä¸–ç•Œç©ºé—´è§†è§’
                 fixed3 dirView:TEXCOORD2;
             };
-            //²ÄÖÊÂş·´ÉäÑÕÉ«
+            //æè´¨æ¼«åå°„é¢œè‰²
             float4 _MainColor;
-            //ÎÆÀí
+            //çº¹ç†
             sampler2D _MainTex;
-            //ÎÆÀíµÄËõ·ÅºÍÆ«ÒÆ
+            //çº¹ç†çš„ç¼©æ”¾å’Œåç§»
             float4 _MainTex_ST;
-            //¸ß¹â·´ÉäÑÕÉ«
+            //é«˜å…‰åå°„é¢œè‰²
             fixed4 _SpecularColor;
-            //¸ß·´¹âÔó¶È
+            //é«˜åå…‰æ³½åº¦
             float _SpecularNum;
-            //Í¸Ã÷¶È´óĞ¡
+            //é€æ˜åº¦å¤§å°
             fixed _AlphaScale;
 
             v2f vert (appdata_base base)
             {
                 v2f data;
                 data.pos = UnityObjectToClipPos(base.vertex);
-                //Ö÷ÌûÍ¼uv×ø±ê
+                //ä¸»å¸–å›¾uvåæ ‡
                 data.uv.xy = base.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
                 data.normal = UnityObjectToWorldNormal(base.normal);
                 data.dirLight = normalize(WorldSpaceLightDir(base.vertex));
@@ -81,15 +81,15 @@ Shader "MyShader/Texture_AlphaTransparentOn"
             fixed4 frag (v2f data) : SV_Target
             {
                 fixed4 texColor = tex2D(_MainTex, data.uv.xy);
-                //ÎÆÀíÑÕÉ«ĞèÒªºÍÂş·´Éä²ÄÖÊÑÕÉ«½øĞĞµş¼Ó¼ÆËã
+                //çº¹ç†é¢œè‰²éœ€è¦å’Œæ¼«åå°„æè´¨é¢œè‰²è¿›è¡Œå åŠ è®¡ç®—
                 fixed3 albedo = texColor.rgb * _MainColor.rgb;
-                //»ñÈ¡À¼²®ÌØÂş·´Éä¹âÕÕÑÕÉ«
+                //è·å–å…°ä¼¯ç‰¹æ¼«åå°„å…‰ç…§é¢œè‰²
                 fixed3 lambertColor = _LightColor0.rgb * albedo * max(0, dot(normalize(data.normal), data.dirLight));
-                //»ñÈ¡¶Ô½ÇÏòÁ¿µÄ±ê×¼»¯
+                //è·å–å¯¹è§’å‘é‡çš„æ ‡å‡†åŒ–
                 fixed3 halfDir = normalize(data.dirView + data.dirLight);
-                //»ñÈ¡²¼ÁÖ·½¸ß¹â·´ÉäÑÕÉ«
+                //è·å–å¸ƒæ—æ–¹é«˜å…‰åå°„é¢œè‰²
                 fixed3 specularColorBack = _LightColor0.rgb * _SpecularColor.rgb * pow(max(0, dot(data.normal, halfDir)), _SpecularNum);
-                //»ñÈ¡²¼ÁÖ·½¹âÕÕÄ£ĞÍ
+                //è·å–å¸ƒæ—æ–¹å…‰ç…§æ¨¡å‹
                 fixed3 color = UNITY_LIGHTMODEL_AMBIENT.rgb * albedo + lambertColor + specularColorBack;
                 return fixed4(color, texColor.a * _AlphaScale);
             }

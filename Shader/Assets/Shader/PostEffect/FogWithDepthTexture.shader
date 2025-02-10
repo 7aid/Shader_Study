@@ -1,17 +1,17 @@
-//ÎÆÀíÉî¶ÈÈ«¾ÖÎíĞ§£¨ÇĞÏß¿Õ¼äÏÂ ÊµÏÖ·¨ÏßÎÆÀíshader£©
-Shader "MyShader/FogWithDepthTexture"
+//çº¹ç†æ·±åº¦å…¨å±€é›¾æ•ˆï¼ˆåˆ‡çº¿ç©ºé—´ä¸‹ å®ç°æ³•çº¿çº¹ç†shaderï¼‰
+Shader "MyShader/PostEffect/FogWithDepthTexture"
 {
     Properties
     {   
-        //µ¥ÕÅÎÆÀíĞÅÏ¢
+        //å•å¼ çº¹ç†ä¿¡æ¯
         _MainTex ("MainTex", 2D) = ""{}    
-        //ÎíµÄÑÕÉ«
+        //é›¾çš„é¢œè‰²
         _FogColor("FogColor", Color) = (1,1,1,1)
-        //ÎíµÄ³Ì¶È
+        //é›¾çš„ç¨‹åº¦
         _FogDensity("FogDensity", float) = 1
-        //ÎíµÄ¿ªÊ¼
+        //é›¾çš„å¼€å§‹
         _FogStart("FogStart", float) = 0
-        //Îí×îÅ¨µÄµØ·½
+        //é›¾æœ€æµ“çš„åœ°æ–¹
         _FogEnd("FogEnd", float) = 10
     }
     SubShader
@@ -28,20 +28,20 @@ Shader "MyShader/FogWithDepthTexture"
 
             #include "UnityCG.cginc"
 
-            //ÎÆÀí
+            //çº¹ç†
             sampler2D _MainTex;
             float2 _MainTex_TexelSize;
             float4 _FogColor;
             float _FogDensity;
             float _FogStart;
             float _FogEnd;
-            //¸Ã¾ØÕóÖ»ÊÇÓÃÓÚ´æ´¢ÏòÁ¿ 0-×óÏÂ 1-ÓÒÏÂ 2-ÓÒÉÏ 3-×óÉÏ
+            //è¯¥çŸ©é˜µåªæ˜¯ç”¨äºå­˜å‚¨å‘é‡ 0-å·¦ä¸‹ 1-å³ä¸‹ 2-å³ä¸Š 3-å·¦ä¸Š
             float4x4 _RayMatrix;
             sampler2D _CameraDepthTexture;
            
             struct v2f
             {
-                //²Ã¼ô¿Õ¼ä×ø±ê
+                //è£å‰ªç©ºé—´åæ ‡
                 float4 pos:SV_POSITION;
                 float4 uv:TEXCOORD0;
                 float4 uv_depth:TEXCOORD1;
@@ -63,7 +63,7 @@ Shader "MyShader/FogWithDepthTexture"
                   index = 2;
                 else
                   index = 3;
-                //ÅĞ¶Ï ÊÇ·ñĞèÒª½øĞĞÎÆÀí·­×ª Èç¹û·­×ªÁË Éî¶ÈµÄuvºÍ¶ÔÓ¦¶¥µãĞèÒª±ä»¯
+                //åˆ¤æ–­ æ˜¯å¦éœ€è¦è¿›è¡Œçº¹ç†ç¿»è½¬ å¦‚æœç¿»è½¬äº† æ·±åº¦çš„uvå’Œå¯¹åº”é¡¶ç‚¹éœ€è¦å˜åŒ–
                 #if UNITY_UV_STARTS_AT_TOP
 				  if (_MainTex_TexelSize.y < 0)
                   {
@@ -71,7 +71,7 @@ Shader "MyShader/FogWithDepthTexture"
                      index = 3 - index;
                   }                  
                 #endif
-                //¸ù¾İ¶¥µãµÄÎ»ÖÃ ¾ö¶¨Ê¹ÓÃÄÇÒ»¸öÉäÏßÏòÁ¿
+                //æ ¹æ®é¡¶ç‚¹çš„ä½ç½® å†³å®šä½¿ç”¨é‚£ä¸€ä¸ªå°„çº¿å‘é‡
                 o.ray = _RayMatrix[index];
                 return o;
 
@@ -79,17 +79,17 @@ Shader "MyShader/FogWithDepthTexture"
 
             fixed4 frag (v2f i) : SV_Target
             {          
-                //¹Û²ì¿Õ¼äÏÂ ÀëÉãÏñ»úµÄÊµ¼Ê¾àÀë£¨Z·ÖÁ¿£©
+                //è§‚å¯Ÿç©ºé—´ä¸‹ ç¦»æ‘„åƒæœºçš„å®é™…è·ç¦»ï¼ˆZåˆ†é‡ï¼‰
                 float linearDepth = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv_depth));
-                //ÊÀ½ç¿Õ¼äÏÂÏñËØ×ø±ê
+                //ä¸–ç•Œç©ºé—´ä¸‹åƒç´ åæ ‡
                 float3 wpos = _WorldSpaceCameraPos + linearDepth * i.ray;
 
-                //ÎíµÄÏà¹Ø¼ÆËã
-                //»ìºÏÒò×Ó
+                //é›¾çš„ç›¸å…³è®¡ç®—
+                //æ··åˆå› å­
                 float f = (_FogEnd - wpos.y) / (_FogEnd - _FogStart);
-                //È¡0-1Ö®¼ä ³¬¹ı»áÈ¡¼«Öµ
+                //å–0-1ä¹‹é—´ è¶…è¿‡ä¼šå–æå€¼
                 f = saturate(f * _FogDensity);
-                //ÀûÓÃ²åÖµ ÔÚÁ½¸öÑÕÉ«Ö®¼ä½øĞĞÈÚºÏ
+                //åˆ©ç”¨æ’å€¼ åœ¨ä¸¤ä¸ªé¢œè‰²ä¹‹é—´è¿›è¡Œèåˆ
                 fixed3 color = lerp(tex2D(_MainTex, i.uv).rgb, _FogColor.rgb, f);
                 return fixed4(color, 1.0);
             }

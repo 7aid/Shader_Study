@@ -1,26 +1,26 @@
-//²¼ÁÖ·½½¥±äÎÆÀíÓë·¨ÏßÌùÍ¼ÎÆÀíShader --- ÇĞÏß¿Õ¼äÊµÏÖ
-Shader "MyShader/Texture_DiffuseAndGradual"
+//å¸ƒæ—æ–¹æ¸å˜çº¹ç†ä¸æ³•çº¿è´´å›¾çº¹ç†Shader --- åˆ‡çº¿ç©ºé—´å®ç°
+Shader "MyShader/Model/Texture_DiffuseAndGradual"
 {
     Properties
-    {   //²ÄÖÊÂş·´ÉäÑÕÉ«
+    {   //æè´¨æ¼«åå°„é¢œè‰²
         _MainColor("MainColor",Color) = (1,1,1,1)
-        //µ¥ÕÅÎÆÀíĞÅÏ¢
+        //å•å¼ çº¹ç†ä¿¡æ¯
         _MainTex ("MainTex", 2D) = ""{}
-        //·¨ÏßÎÆÀíĞÅÏ¢
+        //æ³•çº¿çº¹ç†ä¿¡æ¯
         _BumpTex("BumpTex", 2D) = ""{}
-        //°¼Í¹³Ì¶È
+        //å‡¹å‡¸ç¨‹åº¦
         _BumpNum("BumpNum", Range(0,2)) = 1
-        //½¥±äÎÆÀíÌùÍ¼
+        //æ¸å˜çº¹ç†è´´å›¾
         _GradualTex("GradualTex", 2D) = ""{}
-        //¸ß¹â·´ÉäÑÕÉ«
+        //é«˜å…‰åå°„é¢œè‰²
         _SpecularColor("SpecularColor", Color) = (1,1,1,1)
-        //¹âÔó¶È
+        //å…‰æ³½åº¦
         _SpecularNum("SpecularNum", Range(8, 255)) = 20
     }
     SubShader
     {
         Pass
-        {   //ÉèÖÃ¹âäÖÈ¾·½Ê½£¬²»Í¸Ã÷ÎïÌåÊ¹ÓÃÏòÇ°äÖÈ¾
+        {   //è®¾ç½®å…‰æ¸²æŸ“æ–¹å¼ï¼Œä¸é€æ˜ç‰©ä½“ä½¿ç”¨å‘å‰æ¸²æŸ“
             Tags { "LightMode"="ForwardBase" }
 
             CGPROGRAM
@@ -32,35 +32,35 @@ Shader "MyShader/Texture_DiffuseAndGradual"
 
             struct v2f
             {
-                //²Ã¼ô¿Õ¼ä×ø±ê
+                //è£å‰ªç©ºé—´åæ ‡
                 float4 pos:SV_POSITION;
                 //float2 uvTex:TEXCOORD0;
                 //float2 uvBump:TEXCOORD1;
-                //ÎÒÃÇ¿ÉÒÔµ¥¶ÀµÄÉùÃ÷Á½¸öfloat2µÄ³ÉÔ±ÓÃÓÚ¼ÇÂ¼ ÑÕÉ«ºÍ·¨ÏßÎÆÀíµÄuv×ø±ê
-                //Ò²¿ÉÒÔÖ±½ÓÉùÃ÷Ò»¸öfloat4µÄ³ÉÔ± xyÓÃÓÚ¼ÇÂ¼ÑÕÉ«ÎÆÀíµÄuv£¬zwÓÃÓÚ¼ÇÂ¼·¨ÏßÎÆÀíµÄuv
+                //æˆ‘ä»¬å¯ä»¥å•ç‹¬çš„å£°æ˜ä¸¤ä¸ªfloat2çš„æˆå‘˜ç”¨äºè®°å½• é¢œè‰²å’Œæ³•çº¿çº¹ç†çš„uvåæ ‡
+                //ä¹Ÿå¯ä»¥ç›´æ¥å£°æ˜ä¸€ä¸ªfloat4çš„æˆå‘˜ xyç”¨äºè®°å½•é¢œè‰²çº¹ç†çš„uvï¼Œzwç”¨äºè®°å½•æ³•çº¿çº¹ç†çš„uv
                 float4 uv:TEXCOORD0;
-                //ÇĞÏß¿Õ¼äÏÂ¹âµÄ·½Ïò
+                //åˆ‡çº¿ç©ºé—´ä¸‹å…‰çš„æ–¹å‘
                 float3 lightDir:TEXCOORD1;
-                //ÇĞÏß¿Õ¼äÏÂÊÓ½Ç·½Ïò
+                //åˆ‡çº¿ç©ºé—´ä¸‹è§†è§’æ–¹å‘
                 float3 viewDir:TEXCOORD2;
             };
-            //²ÄÖÊÂş·´ÉäÑÕÉ«
+            //æè´¨æ¼«åå°„é¢œè‰²
             float4 _MainColor;
-            //ÎÆÀí
+            //çº¹ç†
             sampler2D _MainTex;
-            //ÎÆÀíµÄËõ·ÅºÍÆ«ÒÆ
+            //çº¹ç†çš„ç¼©æ”¾å’Œåç§»
             float4 _MainTex_ST;
-            //·¨ÏßÎÆÀí
+            //æ³•çº¿çº¹ç†
             sampler2D _BumpTex;
-            //·¨ÏßÎÆÀíµÄËõ·ÅºÍÆ«ÒÆ
+            //æ³•çº¿çº¹ç†çš„ç¼©æ”¾å’Œåç§»
             float4 _BumpTex_ST;
-            //°¼Í¹³Ì¶È
+            //å‡¹å‡¸ç¨‹åº¦
             float _BumpNum;
-            //¸ß¹â·´ÉäÑÕÉ«
+            //é«˜å…‰åå°„é¢œè‰²
             fixed4 _SpecularColor;
-            //¸ß·´¹âÔó¶È
+            //é«˜åå…‰æ³½åº¦
             float _SpecularNum;
-            //½¥±äÎÆÀí
+            //æ¸å˜çº¹ç†
             sampler2D _GradualTex;
             float4 _GradualTex_ST;
 
@@ -68,21 +68,21 @@ Shader "MyShader/Texture_DiffuseAndGradual"
             {
                 v2f data;
                 data.pos = UnityObjectToClipPos(full.vertex);
-                //Ö÷ÌûÍ¼uv×ø±ê
+                //ä¸»å¸–å›¾uvåæ ‡
                 data.uv.xy = full.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-                //·¨ÏßÌùÍ¼uv×ø±ê
+                //æ³•çº¿è´´å›¾uvåæ ‡
                 data.uv.zw = full.texcoord.xy * _BumpTex_ST.xy + _BumpTex_ST.zw;
-                //¸±ÇĞÏß
+                //å‰¯åˆ‡çº¿
                 fixed3 biTangent = cross(normalize(full.tangent), normalize(full.normal)) * full.tangent.w;
-                //¾ØÕó
+                //çŸ©é˜µ
                 float3x3 mulM2T = float3x3(
                         full.tangent.xyz,
                         biTangent, 
                         full.normal
                 );
-                //ÇĞÏß¿Õ¼ä¹âÕÕ·½Ïò
+                //åˆ‡çº¿ç©ºé—´å…‰ç…§æ–¹å‘
                 data.lightDir = mul(mulM2T, ObjSpaceLightDir(full.vertex));
-                 //ÇĞÏß¿Õ¼äÊÓ½Ç·½Ïò
+                 //åˆ‡çº¿ç©ºé—´è§†è§’æ–¹å‘
                 data.viewDir = mul(mulM2T, ObjSpaceViewDir(full.vertex));
 
                 return data;
@@ -91,26 +91,26 @@ Shader "MyShader/Texture_DiffuseAndGradual"
 
             fixed4 frag (v2f data) : SV_Target
             {
-                //È¡³ö·¨ÏßÌùÍ¼µÄ·¨ÏßĞÅÏ¢
+                //å–å‡ºæ³•çº¿è´´å›¾çš„æ³•çº¿ä¿¡æ¯
                 float4 packNormal = tex2D(_BumpTex, data.uv.zw);
-                //ÓÉÓÚ·¨ÏßXYZ·ÖÁ¿·¶Î§ÔÚ[-1£¬1]Ö®¼ä¶øÏñËØRGB·ÖÁ¿·¶Î§ÔÚ[0£¬1]Ö®¼ä
+                //ç”±äºæ³•çº¿XYZåˆ†é‡èŒƒå›´åœ¨[-1ï¼Œ1]ä¹‹é—´è€Œåƒç´ RGBåˆ†é‡èŒƒå›´åœ¨[0ï¼Œ1]ä¹‹é—´
                 //normalTex = normalTex * 2 - 1;
-                //Ò²¿ÉÒÔÊ¹ÓÃUnpackNormal·½·¨¶Ô·¨ÏßĞÅÏ¢½øĞĞÄæÔËËãÒÔ¼°¿ÉÄÜµÄ½âÑ¹ 
+                //ä¹Ÿå¯ä»¥ä½¿ç”¨UnpackNormalæ–¹æ³•å¯¹æ³•çº¿ä¿¡æ¯è¿›è¡Œé€†è¿ç®—ä»¥åŠå¯èƒ½çš„è§£å‹ 
                 float3 tangentNormal = UnpackNormal(packNormal);
-                //³ËÒÔBumpScaleÓÃÓÚ¿ØÖÆ°¼Í¹³Ì¶È
+                //ä¹˜ä»¥BumpScaleç”¨äºæ§åˆ¶å‡¹å‡¸ç¨‹åº¦
                 tangentNormal.xy *= _BumpNum;
                 tangentNormal.z = sqrt(1.0 - saturate(dot(tangentNormal.xy, tangentNormal.xy)));
-                //Ö÷ÌùÍ¼ÑÕÉ«ºÍÂş·´ÉäÑÕÉ«µş¼Óµş¼Ó
+                //ä¸»è´´å›¾é¢œè‰²å’Œæ¼«åå°„é¢œè‰²å åŠ å åŠ 
                 fixed3 albedo = tex2D(_MainTex, data.uv.xy) * _MainColor.rgb;
-                //»ñÈ¡°ëÀ¼²®ÌØÂş·´ÉäÓàÏÒ
+                //è·å–åŠå…°ä¼¯ç‰¹æ¼«åå°„ä½™å¼¦
                 fixed halfLambertNum = dot(normalize(tangentNormal) , normalize(data.lightDir)) * 0.5 + 0.5;
-                //»ñÈ¡Âş·´ÉäÑÕÉ«
+                //è·å–æ¼«åå°„é¢œè‰²
                 fixed3 diffuseColor = _LightColor0.rgb * albedo.rgb * tex2D(_GradualTex, fixed2(halfLambertNum, halfLambertNum)).rgb;
-                //»ñÈ¡¶Ô½ÇÏòÁ¿µÄ±ê×¼»¯
+                //è·å–å¯¹è§’å‘é‡çš„æ ‡å‡†åŒ–
                 float3 halfDir = normalize( normalize(data.viewDir) + normalize(data.lightDir));
-                //»ñÈ¡²¼ÁÖ·½¸ß¹â·´ÉäÑÕÉ«
+                //è·å–å¸ƒæ—æ–¹é«˜å…‰åå°„é¢œè‰²
                 fixed3 specularColorBack = _LightColor0.rgb * _SpecularColor.rgb * pow(max(0, dot(tangentNormal, halfDir)), _SpecularNum);
-                //»ñÈ¡²¼ÁÖ·½¹âÕÕÄ£ĞÍ
+                //è·å–å¸ƒæ—æ–¹å…‰ç…§æ¨¡å‹
                 fixed3 color = UNITY_LIGHTMODEL_AMBIENT.rgb * albedo + diffuseColor + specularColorBack;
                 return fixed4(color.rgb, 1);
 

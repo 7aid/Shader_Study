@@ -1,15 +1,15 @@
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
-//Blinn_PhoneÊ½Öğ¶¥µã¹âÕÕ
-Shader "MyShader/Blinn_Phong_vert"
+//Blinn_Phoneå¼é€é¡¶ç‚¹å…‰ç…§
+Shader "MyShader/Light/Blinn_Phong_vert"
 {
      Properties
     {
-        //²ÄÖÊÂş·´ÉäÑÕÉ«
+        //æè´¨æ¼«åå°„é¢œè‰²
         _MainColor("_MainColor", Color) = (1,1,1,1)
-        //¸ß¹â·´ÉäÑÕÉ«
+        //é«˜å…‰åå°„é¢œè‰²
         _SpecularColor("_SpecularColor", Color) = (1,1,1,1)
-        //¹âÔó¶È
+        //å…‰æ³½åº¦
         _SpecularGloss("_SpecularGloss",Range(0, 10)) = 0.5
     }
     SubShader
@@ -29,12 +29,12 @@ Shader "MyShader/Blinn_Phong_vert"
             fixed _SpecularGloss;
             struct v2f
             {
-                //¹âÕÕÑÕÉ«
+                //å…‰ç…§é¢œè‰²
                fixed3 color:COLOR;
-               //²Ã¼ô¿Õ¼ä¶¥µã
+               //è£å‰ªç©ºé—´é¡¶ç‚¹
                fixed4 pos:SV_POSITION;
             };
-            //»ñÈ¡À¼²®ÌØÂş·´ÉäÑÕÉ«
+            //è·å–å…°ä¼¯ç‰¹æ¼«åå°„é¢œè‰²
             fixed3 getLambertColor(fixed3 wnormal)
             {
                 fixed3 color;     
@@ -42,13 +42,13 @@ Shader "MyShader/Blinn_Phong_vert"
                 color = _LightColor0.rgb * _MainColor.rgb * max(0, dot(wnormal, dirLight));
                 return color;
             }
-            //»ñÈ¡Phone¸ß¹â·´ÉäÑÕÉ«
+            //è·å–Phoneé«˜å…‰åå°„é¢œè‰²
             fixed3 getBlinnPhoneSpecularColor(fixed3 wnormal, fixed3 wpos)
             {           
                fixed3 color; 
-               //¶Ô½ÇÏòÁ¿
+               //å¯¹è§’å‘é‡
                fixed3 dirHalf = normalize(_WorldSpaceLightPos0) + normalize(_WorldSpaceCameraPos - wpos);
-               //±ê×¼»¯¶Ô½ÇÏòÁ¿
+               //æ ‡å‡†åŒ–å¯¹è§’å‘é‡
                fixed3 dirHalfNormalize = normalize(dirHalf);
                color = _LightColor0.rgb * _SpecularColor.rgb * ( pow( max( 0, dot( dirHalfNormalize, wnormal)), _SpecularGloss));
                return color;

@@ -1,15 +1,15 @@
-//ÎÆÀíÌùÍ¼²¼ÁÖ·½¹âÕÕ
-Shader "MyShader/Texture_Model_BlinnPhong"
+//çº¹ç†è´´å›¾å¸ƒæ—æ–¹å…‰ç…§
+Shader "MyShader/Model/Texture_Model_BlinnPhong"
 {
     Properties
     {
-        //ÎÆÀíÌùÍ¼
+        //çº¹ç†è´´å›¾
         _MainTex ("Texture", 2D) = "" {}
-        //Âş·´Éä¹âÑÕÉ«
+        //æ¼«åå°„å…‰é¢œè‰²
         _MainColor ("MainColor", Color) = (1,1,1,1)
-        //¸ß¹â·´ÉäÑÕÉ«
+        //é«˜å…‰åå°„é¢œè‰²
         _SpecularColor ("SpecularColor", Color) = (1,1,1,1)
-        //¹âÔó¶È
+        //å…‰æ³½åº¦
         _SpecGloss ("SpecGloss", Range(0, 20)) = 0.5  
     }
     SubShader
@@ -25,18 +25,18 @@ Shader "MyShader/Texture_Model_BlinnPhong"
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
 
-            //ÎÆÀíÌùÍ¼ÑÕÉ«
+            //çº¹ç†è´´å›¾é¢œè‰²
             sampler2D _MainTex;
-            //ÎÆÀíÌùÍ¼Ëõ·ÅºÍÆ«ÒÆ
+            //çº¹ç†è´´å›¾ç¼©æ”¾å’Œåç§»
             float4 _MainTex_ST;
-            //Âş·´ÉäÑÕÉ«
+            //æ¼«åå°„é¢œè‰²
             fixed4 _MainColor;
-            //¸ß¹â·´ÉäÑÕÉ«
+            //é«˜å…‰åå°„é¢œè‰²
             fixed4 _SpecularColor;
-            //¹âÔó¶È
+            //å…‰æ³½åº¦
             fixed _SpecGloss;
             
-            //»ñÈ¡À¼²®ÌØÂş·´Éä
+            //è·å–å…°ä¼¯ç‰¹æ¼«åå°„
             fixed3 getLambertColor(fixed3 wNormal, fixed3 albedo)
             {
                 fixed3 color;
@@ -44,11 +44,11 @@ Shader "MyShader/Texture_Model_BlinnPhong"
                 color = _LightColor0.rgb * albedo * max(0, dot(wNormal, dirLight));
                 return color;
             }
-            //»ñÈ¡²¼ÁÖ¸ß¹â·´ÉäÑÕÉ«
+            //è·å–å¸ƒæ—é«˜å…‰åå°„é¢œè‰²
             fixed3 getSpecColor(fixed3 wNormal, fixed3 wPos)
             {
                 fixed3 color;
-                //°ë½ÇÏòÁ¿ = ÊÓ½Çµ¥Î»ÏòÁ¿ + ¹âÔ´µ¥Î»ÏòÁ¿
+                //åŠè§’å‘é‡ = è§†è§’å•ä½å‘é‡ + å…‰æºå•ä½å‘é‡
                 fixed3 dirHalf = normalize(_WorldSpaceCameraPos.xyz - wPos) + normalize(_WorldSpaceLightPos0);
                 color = _LightColor0.rgb * _SpecularColor.rgb * pow(max(0, dot(wNormal, normalize(dirHalf))), _SpecGloss);
                 return color;
@@ -56,13 +56,13 @@ Shader "MyShader/Texture_Model_BlinnPhong"
 
             struct v2f
             {
-                //²Ã¼ô¿Õ¼ä×ø±ê
+                //è£å‰ªç©ºé—´åæ ‡
                 fixed4 pos:SV_POSITION;
-                //ÎÆÀíĞÅÏ¢
+                //çº¹ç†ä¿¡æ¯
                 fixed2 uv:TEXCOORD0;
-                //ÊÀ½ç·¨Ïß
+                //ä¸–ç•Œæ³•çº¿
                 fixed3 wNormal:NORMAL;
-                //ÊÀ½ç×ø±ê
+                //ä¸–ç•Œåæ ‡
                 fixed3 wPos:TEXCOORD1;
             };
 
@@ -79,9 +79,9 @@ Shader "MyShader/Texture_Model_BlinnPhong"
 
             fixed4 frag (v2f i) : SV_Target
             {
-               //ÔÚ´Ë´¦´«ÈëµÄuvÊÇ¾­¹ı²åÖµÔËËãºóµÄ Ã¿Ò»¸öÆ¬Ôª¶¼ÓĞ×Ô¼ºµÄÒ»¸öuv×ø±ê
-               //ÕâÑù²Å»á¾«×¼µÄÔÚÌùÍ¼µ±ÖĞÈ¡³öÑÕÉ«
-               //ÎÆÀíÑÕÉ«ĞèÒªºÍÂş·´Éä²ÄÖÊÑÕÉ«½øĞĞµş¼Ó¹²Í¬¾ö¶¨×îÖÕµÄÑÕÉ«
+               //åœ¨æ­¤å¤„ä¼ å…¥çš„uvæ˜¯ç»è¿‡æ’å€¼è¿ç®—åçš„ æ¯ä¸€ä¸ªç‰‡å…ƒéƒ½æœ‰è‡ªå·±çš„ä¸€ä¸ªuvåæ ‡
+               //è¿™æ ·æ‰ä¼šç²¾å‡†çš„åœ¨è´´å›¾å½“ä¸­å–å‡ºé¢œè‰²
+               //çº¹ç†é¢œè‰²éœ€è¦å’Œæ¼«åå°„æè´¨é¢œè‰²è¿›è¡Œå åŠ å…±åŒå†³å®šæœ€ç»ˆçš„é¢œè‰²
                fixed3 albedo = tex2D(_MainTex, i.uv).rgb * _MainColor.rgb;
                fixed3 lambertColor = getLambertColor(i.wNormal, albedo);
                fixed3 specColor = getSpecColor(i.wNormal, i.wPos);

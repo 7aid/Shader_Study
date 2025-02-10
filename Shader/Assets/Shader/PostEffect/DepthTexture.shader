@@ -1,5 +1,5 @@
 //深度纹理
-Shader "MyShader/DepthTexture"
+Shader "MyShader/PostEffect/DepthTexture"
 {
     Properties
     {

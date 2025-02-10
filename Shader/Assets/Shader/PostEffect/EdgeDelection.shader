@@ -1,5 +1,5 @@
 //屏幕边缘处理效果
-Shader "MyShader/EdgeDelection"
+Shader "MyShader/PostEffect/EdgeDelection"
 {
     Properties
     {

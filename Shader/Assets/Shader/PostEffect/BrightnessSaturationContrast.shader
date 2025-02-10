@@ -1,5 +1,5 @@
 //屏幕颜色亮度，饱和度，对比度
-Shader "MyShader/BrightnessSaturationContrast"
+Shader "MyShader/PostEffect/BrightnessSaturationContrast"
 {
     Properties
     {

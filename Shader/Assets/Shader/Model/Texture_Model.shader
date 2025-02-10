@@ -1,4 +1,4 @@
-Shader "MyShader/Texture_Model"
+Shader "MyShader/Model/Texture_Model"
 {
     Properties
     {
@@ -30,8 +30,8 @@ Shader "MyShader/Texture_Model"
 
             fixed4 frag (v2f_img i) : SV_Target
             {
-                //ÔÚ´Ë´¦´«ÈëµÄuvÊÇ¾­¹ı²åÖµÔËËãºóµÄ Ã¿Ò»¸öÆ¬Ôª¶¼ÓĞ×Ô¼ºµÄÒ»¸öuv×ø±ê
-                //ÕâÑù²Å»á¾«×¼µÄÔÚÌùÍ¼µ±ÖĞÈ¡³öÑÕÉ«
+                //åœ¨æ­¤å¤„ä¼ å…¥çš„uvæ˜¯ç»è¿‡æ’å€¼è¿ç®—åçš„ æ¯ä¸€ä¸ªç‰‡å…ƒéƒ½æœ‰è‡ªå·±çš„ä¸€ä¸ªuvåæ ‡
+                //è¿™æ ·æ‰ä¼šç²¾å‡†çš„åœ¨è´´å›¾å½“ä¸­å–å‡ºé¢œè‰²
                fixed4 color = tex2D(_MainTex, i.uv);
                return color;
             }

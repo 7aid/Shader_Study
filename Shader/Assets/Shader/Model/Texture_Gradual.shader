@@ -1,15 +1,15 @@
-//²¼ÁÖ·½¹âÕÕºÍ½¥±äÎÆÀíShader
-Shader "MyShader/Texture_Gradual"
+//å¸ƒæ—æ–¹å…‰ç…§å’Œæ¸å˜çº¹ç†Shader
+Shader "MyShader/Model/Texture_Gradual"
 {
    Properties
     {
-        //²ÄÖÊÂş·´ÉäÑÕÉ«
+        //æè´¨æ¼«åå°„é¢œè‰²
         _MainColor("MainColor", Color) = (1,1,1,1)
-        //¸ß¹â·´ÉäÑÕÉ«
+        //é«˜å…‰åå°„é¢œè‰²
         _SpecularColor("SpecularColor", Color) = (1,1,1,1)
-        //¹âÔó¶È
+        //å…‰æ³½åº¦
         _SpecularGloss("SpecularGloss",Range(8, 255)) = 10
-        //½¥±äÎÆÀí
+        //æ¸å˜çº¹ç†
         _GradualTex("GradualTex", 2D) = ""{}
 
     }
@@ -17,7 +17,7 @@ Shader "MyShader/Texture_Gradual"
     {
         Pass
         {
-            //ÉèÖÃ¹âÔ´äÖÈ¾Ä£Ê½
+            //è®¾ç½®å…‰æºæ¸²æŸ“æ¨¡å¼
             Tags{"LightMode" = "ForwardBase"}
             CGPROGRAM
             #pragma vertex vert
@@ -25,32 +25,32 @@ Shader "MyShader/Texture_Gradual"
 
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
-            //Ö÷²ÄÖÊÑÕÉ«
+            //ä¸»æè´¨é¢œè‰²
             fixed4 _MainColor;
-            //¸ß¹â·´ÉäÑÕÉ«
+            //é«˜å…‰åå°„é¢œè‰²
             fixed4 _SpecularColor;
             fixed _SpecularGloss;
-            //½¥±äÎÆÀí
+            //æ¸å˜çº¹ç†
             sampler2D _GradualTex;
-            //½¥±äÎÆÀíËõ·ÅÆ«ÒÆ
+            //æ¸å˜çº¹ç†ç¼©æ”¾åç§»
             float4 _GradualTex_ST;
             struct v2f
             {
-               //²Ã¼ô¿Õ¼ä¶¥µã
+               //è£å‰ªç©ºé—´é¡¶ç‚¹
                fixed4 pos:SV_POSITION;
-               //ÊÀ½ç¿Õ¼ä¶¥µã
+               //ä¸–ç•Œç©ºé—´é¡¶ç‚¹
                fixed3 wpos:TEXCOORD;
-               //ÊÀ½ç¿Õ¼ä·¨Ïß
+               //ä¸–ç•Œç©ºé—´æ³•çº¿
                fixed3 wnormal:TEXCOORD1;
             };
 
-            //»ñÈ¡Phone¸ß¹â·´ÉäÑÕÉ«
+            //è·å–Phoneé«˜å…‰åå°„é¢œè‰²
             fixed3 getBlinnPhoneSpecularColor(fixed3 wnormal, fixed3 wpos)
             {           
                fixed3 color; 
-               //¶Ô½ÇÏòÁ¿
+               //å¯¹è§’å‘é‡
                fixed3 dirHalf = normalize(_WorldSpaceLightPos0) + normalize(UnityWorldSpaceViewDir(wpos));
-               //±ê×¼»¯¶Ô½ÇÏòÁ¿
+               //æ ‡å‡†åŒ–å¯¹è§’å‘é‡
                fixed3 dirHalfNormalize = normalize(dirHalf);
                color = _LightColor0.rgb * _SpecularColor.rgb * ( pow( max( 0, dot(wnormal , dirHalfNormalize)), _SpecularGloss));
                return color;
@@ -68,9 +68,9 @@ Shader "MyShader/Texture_Gradual"
             fixed4 frag (v2f i) : SV_Target
             {
                fixed3 dirLight = normalize( _WorldSpaceLightPos0);
-               //»ñÈ¡°ëÀ¼ÌØÓàÏÒÖµ[0,1]ÓÃÓÚ»ñÈ¡½¥±äÎÆÀí
+               //è·å–åŠå…°ç‰¹ä½™å¼¦å€¼[0,1]ç”¨äºè·å–æ¸å˜çº¹ç†
                float halfLambert = dot(normalize(i.wnormal), dirLight) * 0.5 + 0.5;
-               //»ñÈ¡ÔÚ½¥±äÎÆÀíÖĞ»ñÈ¡µÄÑÕÉ«ÓëÂş·´Éäµş¼Ó
+               //è·å–åœ¨æ¸å˜çº¹ç†ä¸­è·å–çš„é¢œè‰²ä¸æ¼«åå°„å åŠ 
                fixed3 diffuseColor = _LightColor0.rgb * _MainColor.rgb * tex2D(_GradualTex, fixed2(halfLambert, halfLambert));
                fixed3 color = UNITY_LIGHTMODEL_AMBIENT.rgb + diffuseColor + getBlinnPhoneSpecularColor(normalize(i.wnormal), i.wpos);
                return fixed4(color.rgb, 1);

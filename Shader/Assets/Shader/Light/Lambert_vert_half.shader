@@ -1,9 +1,9 @@
-//°ëÀ¼²®ÌØ¹âÕÕÖğ¶¥µã¹âÕÕ
-Shader "MyShader/Lambert_vert_half"
+//åŠå…°ä¼¯ç‰¹å…‰ç…§é€é¡¶ç‚¹å…‰ç…§
+Shader "MyShader/Light/Lambert_vert_half"
 {
     Properties
     {
-        //ÉèÖÃ²ÄÖÊÑÕÉ«
+        //è®¾ç½®æè´¨é¢œè‰²
         _MainColor("_MainColor", Color) = (1,1,1,1)
     }
     SubShader
@@ -38,7 +38,7 @@ Shader "MyShader/Lambert_vert_half"
 
             fixed4 fragment(v2f data) : SV_TARGET
             {
-                // ÒòÎªÊÇ¶Ô²»Í¸Ã÷µÄÎïÌå´¦Àí£¬ËùÒÔ²»ĞèÒªÍ¸Ã÷
+                // å› ä¸ºæ˜¯å¯¹ä¸é€æ˜çš„ç‰©ä½“å¤„ç†ï¼Œæ‰€ä»¥ä¸éœ€è¦é€æ˜
                 return fixed4(data.color, 1);
             }
             ENDCG

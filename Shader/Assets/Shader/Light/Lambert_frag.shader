@@ -1,9 +1,9 @@
-//°ëÀ¼²®ÌØ¹âÕÕÖğÆ¬Ôª¹âÕÕ
-Shader "MyShader/Lambert_frag"
+//åŠå…°ä¼¯ç‰¹å…‰ç…§é€ç‰‡å…ƒå…‰ç…§
+Shader "MyShader/Light/Lambert_frag"
 {
     Properties
     {
-        //²ÄÖÊµÄÂş·´ÉäÊôĞÔ
+        //æè´¨çš„æ¼«åå°„å±æ€§
         _LambortColor("_LambortColor",Color) = (1,1,1,1)
     }
     SubShader

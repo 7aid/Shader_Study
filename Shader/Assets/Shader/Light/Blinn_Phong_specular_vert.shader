@@ -1,13 +1,13 @@
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
-//Blinn_PhoneÊ½Öğ¶¥µã¸ß¹â·´Éä¹âÕÕ
-Shader "MyShader/Blinn_Phong_specular_vert"
+//Blinn_Phoneå¼é€é¡¶ç‚¹é«˜å…‰åå°„å…‰ç…§
+Shader "MyShader/Light/Blinn_Phong_specular_vert"
 {
     Properties
     {
-        //¸ß¹â·´ÉäÑÕÉ«
+        //é«˜å…‰åå°„é¢œè‰²
         _SpecularColor("_SpecularColor", Color) = (1,1,1,1)
-        //¹âÔó¶È
+        //å…‰æ³½åº¦
         _SpecularGloss("_SpecularGloss",Range(0, 10)) = 0.5
     }
     SubShader
@@ -27,9 +27,9 @@ Shader "MyShader/Blinn_Phong_specular_vert"
             fixed _SpecularGloss;
             struct v2f
             {
-               //¹âÕÕÑÕÉ«
+               //å…‰ç…§é¢œè‰²
                fixed3 color:COLOR;
-               //²Ã¼ô¿Õ¼ä¶¥µã
+               //è£å‰ªç©ºé—´é¡¶ç‚¹
                fixed4 pos:SV_POSITION;
             };
           
@@ -40,9 +40,9 @@ Shader "MyShader/Blinn_Phong_specular_vert"
                data.pos = UnityObjectToClipPos(dataBase.vertex);
                fixed3 wpos = mul(unity_ObjectToWorld, dataBase.vertex).xyz;
                fixed3 dirNormal = UnityObjectToWorldNormal(dataBase.normal);
-               //°ë½ÇÏòÁ¿
+               //åŠè§’å‘é‡
                fixed3 dirHalf = normalize(_WorldSpaceCameraPos - wpos) + normalize(_WorldSpaceLightPos0);
-               //°ë½ÇÏòÁ¿µÄ·½ÏòÏòÁ¿
+               //åŠè§’å‘é‡çš„æ–¹å‘å‘é‡
                fixed3 dirHalfNormalize = normalize(dirHalf);
                data.color = _LightColor0.rgb * _SpecularColor.rgb * pow(max(0, dot(dirHalfNormalize, dirNormal)), _SpecularGloss);
                return data;

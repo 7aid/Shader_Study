@@ -1,15 +1,15 @@
-//Âş·´ÉäÓë·´Éä½áºÏ£¨¹âÕÕÒõÓ°£©
-Shader "MyShader/CubeLambortReflect"
+//æ¼«åå°„ä¸åå°„ç»“åˆï¼ˆå…‰ç…§é˜´å½±ï¼‰
+Shader "MyShader/HighTexture/CubeLambortReflect"
 {
     Properties
     {
-        //À¼²®ÌØÂş·´ÉäÑÕÉ«
+        //å…°ä¼¯ç‰¹æ¼«åå°„é¢œè‰²
         _LambortColor("LambortColor", Color) = (1,1,1,1)
-        //·´ÉäÑÕÉ«
+        //åå°„é¢œè‰²
         _ReflectColor("ReflectColor", Color) = (1,1,1,1)
-        //Á¢·½ÌåÎÆÀí
+        //ç«‹æ–¹ä½“çº¹ç†
         _Cube("CubeMap", Cube) = ""{}
-        //·´ÉäÂÊ
+        //åå°„ç‡
         _Reflectivity("Reflectivity", Range(0,1)) = 1
     }
   
@@ -38,12 +38,12 @@ Shader "MyShader/CubeLambortReflect"
 
         struct v2f 
         {
-            float4 pos:SV_POSITION;//²Ã¼ô¿Õ¼äÏÂ¶¥µã×ø±ê
-            //ÊÀ½ç¿Õ¼äÏÂ·´ÉäÏòÁ¿£¬ÎÒÃÇ½«°Ñ·´ÉäÏòÁ¿µÄ¼ÆËã·ÅÔÚ¶¥µã×ÅÉ«Æ÷º¯ÊıÖĞ  
-            //½ÚÔ¼ĞÔÄÜ ±íÏÖĞ§¹ûÒ²²»»áÌ«²î£¬ÈâÑÛ¼¸ºõ·Ö±æ²»³öÀ´
+            float4 pos:SV_POSITION;//è£å‰ªç©ºé—´ä¸‹é¡¶ç‚¹åæ ‡
+            //ä¸–ç•Œç©ºé—´ä¸‹åå°„å‘é‡ï¼Œæˆ‘ä»¬å°†æŠŠåå°„å‘é‡çš„è®¡ç®—æ”¾åœ¨é¡¶ç‚¹ç€è‰²å™¨å‡½æ•°ä¸­  
+            //èŠ‚çº¦æ€§èƒ½ è¡¨ç°æ•ˆæœä¹Ÿä¸ä¼šå¤ªå·®ï¼Œè‚‰çœ¼å‡ ä¹åˆ†è¾¨ä¸å‡ºæ¥
             fixed3 wNormal:NORMAL;
             float3 worldRefl:TEXCOORD0;
-            //ÊÀ½ç×ø±ê
+            //ä¸–ç•Œåæ ‡
             fixed3 wPos:TEXCOORD1;
             SHADOW_COORDS(2)
         };
@@ -51,16 +51,16 @@ Shader "MyShader/CubeLambortReflect"
         v2f vert(appdata_base v)
         {
             v2f data;
-            //¶¥µã×ø±ê×ª»»
+            //é¡¶ç‚¹åæ ‡è½¬æ¢
             data.pos = UnityObjectToClipPos(v.vertex);
-            //¼ÆËã·´Éä·½ÏòÏòÁ¿
-            //1.¼ÆËãÊÀ½çÏÂ¿Õ¼ä·¨ÏßÏòÁ¿
+            //è®¡ç®—åå°„æ–¹å‘å‘é‡
+            //1.è®¡ç®—ä¸–ç•Œä¸‹ç©ºé—´æ³•çº¿å‘é‡
             data.wNormal = UnityObjectToWorldNormal(v.normal);
-            //2.ÊÀ½ç¿Õ¼äÏÂ¶¥µã×ø±ê
+            //2.ä¸–ç•Œç©ºé—´ä¸‹é¡¶ç‚¹åæ ‡
             data.wPos = mul(unity_ObjectToWorld, v.vertex);
-            //3.¼ÆËãÊÓ½Ç·½Ïò ÄÚ²¿ÊÇÓÃÉãÏñ»úÎ»ÖÃ - ÊÀ½ç×ø±êÎ»ÖÃ
+            //3.è®¡ç®—è§†è§’æ–¹å‘ å†…éƒ¨æ˜¯ç”¨æ‘„åƒæœºä½ç½® - ä¸–ç•Œåæ ‡ä½ç½®
             fixed3 wViewDir = UnityWorldSpaceViewDir(data.wPos);
-            //4.¼ÆËã·´ÉäÏòÁ¿
+            //4.è®¡ç®—åå°„å‘é‡
             data.worldRefl = reflect(-wViewDir, data.wNormal);
 
             TRANSFER_SHADOW(data);
@@ -69,13 +69,13 @@ Shader "MyShader/CubeLambortReflect"
 
         fixed4 frag(v2f i):SV_TARGET
         {
-            //¶ÔÁ¢·½ÌåÎÆÀíÀûÓÃ¶ÔÓ¦µÄ·´ÉäÏòÁ¿½øĞĞ²ÉÑù
+            //å¯¹ç«‹æ–¹ä½“çº¹ç†åˆ©ç”¨å¯¹åº”çš„åå°„å‘é‡è¿›è¡Œé‡‡æ ·
             fixed4 cubemapColor = texCUBE(_Cube, i.worldRefl);
             fixed3 wLightDir = UnityWorldSpaceLightDir(i.wPos);
-            //Âş·´ÉäÑÕÉ«
+            //æ¼«åå°„é¢œè‰²
             fixed3 diffuseColor = _LightColor0.rgb * _LambortColor.rgb * max(0, dot(normalize(wLightDir) ,normalize(i.wNormal)));
             UNITY_LIGHT_ATTENUATION(atten, i, i.wPos);       
-            //ÓÃ²ÉÑùÑÕÉ«*²ÉÑùÂÊ ¾ö¶¨×îÖÕµÄÑÕÉ«         
+            //ç”¨é‡‡æ ·é¢œè‰²*é‡‡æ ·ç‡ å†³å®šæœ€ç»ˆçš„é¢œè‰²         
             fixed3 color = UNITY_LIGHTMODEL_AMBIENT.rgb + lerp(diffuseColor, cubemapColor, _Reflectivity) * atten;
             return fixed4(color, 1.0);
         }

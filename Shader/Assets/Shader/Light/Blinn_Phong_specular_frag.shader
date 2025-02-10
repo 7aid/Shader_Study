@@ -1,13 +1,13 @@
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
-//Blinn_PhoneÊ½ÖğÆ¬Ôª¸ß¹â·´Éä¹âÕÕ
-Shader "MyShader/Blinn_Phong_specular_frag"
+//Blinn_Phoneå¼é€ç‰‡å…ƒé«˜å…‰åå°„å…‰ç…§
+Shader "MyShader/Light/Blinn_Phong_specular_frag"
 {
     Properties
     {
-        //¸ß¹â·´ÉäÑÕÉ«
+        //é«˜å…‰åå°„é¢œè‰²
         _SpecularColor("_SpecularColor", Color) = (1,1,1,1)
-        //¹âÔó¶È
+        //å…‰æ³½åº¦
         _SpecularGloss("_SpecularGloss",Range(0, 10)) = 0.5
     }
     SubShader
@@ -27,11 +27,11 @@ Shader "MyShader/Blinn_Phong_specular_frag"
             fixed _SpecularGloss;
             struct v2f
             {
-               //ÊÀ½ç¿Õ¼ä·¨Ïß
+               //ä¸–ç•Œç©ºé—´æ³•çº¿
                fixed3 normal:NORMAL;
-               //²Ã¼ô¿Õ¼ä¶¥µã
+               //è£å‰ªç©ºé—´é¡¶ç‚¹
                fixed4 pos:SV_POSITION;
-               //ÊÀ½ç¿Õ¼ä¶¥µã
+               //ä¸–ç•Œç©ºé—´é¡¶ç‚¹
                fixed3 wpos:TEXCOORD;
             };
           

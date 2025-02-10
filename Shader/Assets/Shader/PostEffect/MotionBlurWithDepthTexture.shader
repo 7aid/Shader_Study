@@ -1,5 +1,5 @@
 //纹理深度实现运动模糊
-Shader "MyShader/MotionBlurWithDepthTexture"
+Shader "MyShader/PostEffect/MotionBlurWithDepthTexture"
 {
     Properties
     {

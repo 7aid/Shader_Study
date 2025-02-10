@@ -1,59 +1,59 @@
-//�����ع����𶥵����
-Shader "MyShader/Lambort_vert"
+//兰伯特光照逐顶点光照
+Shader "MyShader/Light/Lambort_vert"
 {
     Properties
     {
-        //���ʵ�����������
+        //材质的漫反射属性
         _LambortColor("_LambortColor",Color) = (1,1,1,1)
     }
     SubShader
     {
-        //��Ⱦ��ǩ����ʾ��͸��������ǰ��Ⱦ
+        //渲染标签，表示不透明物体向前渲染
         Tags{"LightMode" = "ForwardBase"}
-        //��Ⱦͨ��
+        //渲染通道
         Pass
         {
             CGPROGRAM
-            //������ɫ������ָ��
+            //顶点着色器编译指令
             #pragma vertex vert
-            //ƬԪ��ɫ����������
+            //片元着色器编译质量
             #pragma fragment frag
-            //���ö�Ӧ�������ļ� 
-            //��Ҫ��Ϊ��֮�� �� �������ýṹ��ʹ�ã����ñ���ʹ��
+            //引用对应的内置文件 
+            //主要是为了之后 的 比如内置结构体使用，内置变量使用
             #include "UnityCG.cginc"          
             #include "Lighting.cginc"
 
             fixed4 _LambortColor;
            
-            //������ɫ�����ݸ�ƬԪ��ɫ��������
+            //顶点着色器传递给片元着色器的内容
             struct v2f
             {
-                ////�ü��ռ��µĶ���������Ϣ
+                ////裁剪空间下的顶点坐标信息
                 float4 pos:SV_POSITION;
-                //��Ӧ����������������ɫ
+                //对应顶点的漫反射光照颜色
                 fixed3 color:COLOR;
             };
 
-            //�𶥵���� ������ص������������ɫ�ļ��� ��Ҫд�ڶ�����ɫ�� �ص�������
+            //逐顶点光照 所以相关的漫反射光照颜色的计算 需要写在顶点着色器 回调函数中
             v2f vert(appdata_base data)
             {
                 v2f v2f;
-                //��ģ�Ϳռ�ĵ�ת�����ü��ռ�
+                //将模型空间的点转换至裁剪空间
                 v2f.pos = UnityObjectToClipPos(data.vertex);
-                //��ȡģ�Ϳռ��������ռ��ı�׼������
+                //获取模型空间点在世界空间点的标准化法线
                 fixed3 dataNormal = UnityObjectToWorldNormal(data.normal);
-                //��ȡ����ռ��Դ��׼������
+                //获取世界空间光源标准化向量
                 fixed3 lightNomralizeDir = normalize(_WorldSpaceLightPos0.xyz);
-                //��ȡ����ռ��Դ��ģ�Ϳռ�����ɫ         
+                //获取世界空间光源在模型空间点的颜色         
                 v2f.color = _LightColor0.rgb * _LambortColor.rgb * max(0, dot(lightNomralizeDir, dataNormal));
-                //�����ع���ģ�ͻ����������ģ����������Ӱ��Ӱ�죬�������屻�����䲻���ĵط���ȫ�ڰ�
+                //兰伯特光照模型环境光变量，模拟光对物体阴影的影响，避免物体被光照射不到的地方完全黑暗
                 v2f.color = v2f.color + UNITY_LIGHTMODEL_AMBIENT.rgb;
                 return v2f;
             }
 
             fixed4 frag(v2f v2f):SV_Target
             {
-                //�ڴ˴����������������ɫ(͸��ֵĬ��Ϊ1)
+                //在此处返回漫反射光照颜色(透明值默认为1)
                 return fixed4(v2f.color.rgb, 1);
             }
             ENDCG    

@@ -1,5 +1,5 @@
 //序列帧
-Shader "MyShader/SequenceFrame"
+Shader "MyShader/DynamicEffect/SequenceFrame"
 {
     Properties
     {

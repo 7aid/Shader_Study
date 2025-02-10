@@ -1,15 +1,15 @@
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
-//PhoneÊ½Öğ¶¥µã¹âÕÕ
-Shader "MyShader/Phong_frag"
+//Phoneå¼é€é¡¶ç‚¹å…‰ç…§
+Shader "MyShader/Light/Phong_frag"
 {
     Properties
     {
-        //²ÄÖÊÂş·´ÉäÑÕÉ«
+        //æè´¨æ¼«åå°„é¢œè‰²
         _MainColor("_MainColor", Color) = (1,1,1,1)
-        //¸ß¹â·´ÉäÑÕÉ«
+        //é«˜å…‰åå°„é¢œè‰²
         _SpecularColor("_SpecularColor", Color) = (1,1,1,1)
-        //¹âÔó¶È
+        //å…‰æ³½åº¦
         _SpecularGloss("_SpecularGloss",Range(0, 10)) = 0.5
     }
     SubShader
@@ -29,14 +29,14 @@ Shader "MyShader/Phong_frag"
             fixed _SpecularGloss;
             struct v2f
             {
-               //ÊÀ½ç¿Õ¼äÏÂ·¨Ïß
+               //ä¸–ç•Œç©ºé—´ä¸‹æ³•çº¿
                fixed3 normal:NORMAL;
-               //ÊÀ½ç¿Õ¼äÏÂ¶¥µã
+               //ä¸–ç•Œç©ºé—´ä¸‹é¡¶ç‚¹
                fixed3 wpos:TEXCOORD0;
-               //²Ã¼ô¿Õ¼äÏÂ¶¥µã
+               //è£å‰ªç©ºé—´ä¸‹é¡¶ç‚¹
                fixed4 pos:SV_POSITION;
             };
-            //»ñÈ¡À¼²®ÌØÂş·´ÉäÑÕÉ«
+            //è·å–å…°ä¼¯ç‰¹æ¼«åå°„é¢œè‰²
             fixed3 getLambertColor(fixed3 wnormal)
             {
                 fixed3 color;
@@ -44,17 +44,17 @@ Shader "MyShader/Phong_frag"
                 color = _LightColor0 * _MainColor.rgb * max(0, dot(wnormal, dirLight));
                 return color;
             }
-            //»ñÈ¡Phone¸ß¹â·´ÉäÑÕÉ«
+            //è·å–Phoneé«˜å…‰åå°„é¢œè‰²
             fixed3 getPhoneSpecularColor(fixed3 wnormal, fixed3 wpos)
             {           
                fixed3 color;
-               //±ê×¼ºóÊÀ½ç¿Õ¼ä¹Û²ì·½ÏòÏòÁ¿
+               //æ ‡å‡†åä¸–ç•Œç©ºé—´è§‚å¯Ÿæ–¹å‘å‘é‡
                fixed3 dirCamera = normalize(_WorldSpaceCameraPos.xyz - wpos);
-               //ÊÀ½ç¿Õ¼äÏÂ¹âµÄµ¥Î»ÏòÁ¿
+               //ä¸–ç•Œç©ºé—´ä¸‹å…‰çš„å•ä½å‘é‡
                fixed3 dirLight = normalize(_WorldSpaceLightPos0.xyz);
-               //±ê×¼ºóµÄ·´Éä·½Ïò
+               //æ ‡å‡†åçš„åå°„æ–¹å‘
                fixed3 dirEflect = reflect(-dirLight ,wnormal);
-               //¸ß¹â·´Éä¹âÕÕÑÕÉ« = ¹âÔ´µÄÑÕÉ« * ²ÄÖÊ¸ß¹â·´ÉäÑÕÉ« * max (0£¬±ê×¼»¯ºó¹Û²ì·½ÏòÏòÁ¿ ¡¤ ±ê×¼»¯ºóµÄ·´Éä·½Ïò) Ãİ
+               //é«˜å…‰åå°„å…‰ç…§é¢œè‰² = å…‰æºçš„é¢œè‰² * æè´¨é«˜å…‰åå°„é¢œè‰² * max (0ï¼Œæ ‡å‡†åŒ–åè§‚å¯Ÿæ–¹å‘å‘é‡ Â· æ ‡å‡†åŒ–åçš„åå°„æ–¹å‘) å¹‚
                color = _LightColor0 * _SpecularColor.rgb * ( pow( max( 0, dot( dirEflect, dirCamera)), _SpecularGloss));
                return color;
             }
