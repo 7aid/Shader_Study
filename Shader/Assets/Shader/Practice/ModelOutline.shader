@@ -14,6 +14,7 @@ Shader "MyShader/Practice/ModelOutline"
 
         Pass
         {
+            Name "PASS_OUTLINE"
             //关闭深度写入 目的是 第二个Pass能够覆盖重合的地方
             ZWrite Off
 
@@ -27,8 +28,6 @@ Shader "MyShader/Practice/ModelOutline"
             {
                 float4 vertex : SV_POSITION;
             };
-
-            sampler2D _MainTex;
             float4 _OutlineColor;
             float _OutlineWidth;
 
